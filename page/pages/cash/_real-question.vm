@@ -1,0 +1,11 @@
+<div id="agreement-dialog-real" class="agreement js-agreement hidden">
+    <div class="agreement-title">
+        <a href="#" class="agreement-btn-close js-agreement-back-button">关闭</a>
+        实际到账
+	</div>
+	<div class="agreement-content contract">
+        <p class="">1、信息技术服务费：天道公司对借款人进行信息搜集、资信评估、信息交互核验及为借款提供的技术服务所收取的费用，借款人应不迟于借款发放当日向天道公司支付信息技术服务费。</p>
+        <p class="">2、如出借人直接将借款金额支付至借款人账户的，借款人收到借款金额即视为借款发放成功。同时借款人委托天道公司及其合作的第三方从借款人账号中代扣有关款项，用于代借款人向第三方支付应付款项，直至代扣或收取成功。</p>
+        <p class="">3、如出借人委托第三方将借款金额支付至借款人指定账户的，则借款人同意第三方将借款金额中与其他合同项下的应付金额等额的款项支付给相应债权人账户，将借款金额中剩余部分款项支付至借款人指定的账户，借款人收到借款金额中的剩余部分款项即视为借款发放成功。</p>
+	</div>
+</div>

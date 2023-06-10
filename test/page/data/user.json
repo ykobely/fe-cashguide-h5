@@ -1,0 +1,65 @@
+{
+    "code": 0,
+    "result": {
+        "birthday": "1990-11-09 00:00:00",
+        "createTime": "2018-07-12 14:09:56",
+        "lastLoginTime": "2018-07-12 14:10:20",
+        "lastUpdateTime": "2018-07-31 11:08:50",
+        "mainRelation": "13422886000",
+        "mobile": "13422886000",
+        "source": "mop",
+        "userAccountInfo": {
+            "bankCardNo": "6217007200057197009",
+            "bankMobile": "13422886000",
+            "bankName": "中国建设银行",
+            "bankPhotoFlowType": 1,
+            "bankWholeName": "中国建设银行",
+            "isAutoPay": 1,
+            "isCanPay": true,
+            "isSupportPay": 1
+        },
+        "userId": 1531375869587,
+        "userPersonalInfo": {
+            "eduStatus": 8,
+            "emergencyAddressBookStatus": 0,
+            "emergencyContact": "艺名",
+            "emergencyContactPhone": "13646494994",
+            "emergencyContactType": 3,
+            "homeAddress": "孩子你在质疑",
+            "homeCity": "北京市 北京市 西城区",
+            "homeCityCode": "110100",
+            "homeProvinceCode": "110000",
+            "idCardExpiry": "20180719-20220719",
+            "idCardNo": "513902199011095072",
+            "imType": 1,
+            "marriageStatus": 2,
+            "picCust": "/share/consumerImage/application/cashwap/20180731/1531375869587/4/1531375869587_20180731110810.jpeg",
+            "picIdback": "/share/consumerImage/application/cashwap/20180725/1531375869587/2/1531375869587_20180725152134.jpeg",
+            "picIdbackFlowType": 1,
+            "picIdfront": "/share/consumerImage/application/cashwap/20180725/1531375869587/1/1531375869587_20180725152116.jpeg",
+            "picIdfrontFlowType": 1,
+            "realName": "刘宇鹏123",
+            "secondContact": "哄哄",
+            "secondContactPhone": "13464659565",
+            "secondContactType": 6,
+            "sex": "M"
+        },
+        "userStudent": {
+            "schoolCity": ""
+        },
+        "userType": 1,
+        "userWorkInfo": {
+            "companyAddress": "好哦公民",
+            "companyCity": "北京市 北京市 西城区",
+            "companyCityCode": "110100",
+            "companyName": "111111",
+            "companyProvinceCode": "110000",
+            "industry": 2,
+            "monthIncome": 5500.0,
+            "monthIncomeLevel": 0,
+            "monthIncomeLevelDesc": "未知",
+            "officePhone": "0772-54545545"
+        }
+    },
+    "status": 200
+}

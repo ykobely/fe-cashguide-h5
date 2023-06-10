@@ -1,0 +1,69 @@
+#set( $title = '申请记录' )
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/loan.scss">
+#end
+
+#block('body')
+<div class="weui-pull-to-refresh-layer">
+    <div class="pull-to-refresh-arrow"></div>
+    <div class="pull-to-refresh-preloader"></div>
+    <div class="down">下拉刷新</div>
+    <div class="up">释放刷新</div>
+    <div class="refresh">正在刷新...</div>
+</div>
+<div class="panel">
+    #if($!orderList)
+    <div class="index-box" id="orderList">
+        #foreach($item in $orderList)
+        <div class="item js-detail-btn cursor" data-orderId="$!{item.orderId}">
+            <div class="item-left">
+                <p class="title">$!{item.createDate}申请(元)</p>
+                <p class="money">
+                    <span>$!{item.loanPricipal}</span>
+                    #if($!{item.orderStatus} == 3)
+                    <button type="button" class="btn btn-danger">已逾期</button>
+                    #end
+                </p>
+            </div>
+            <div class="item-right #if($!{item.orderStatus} == 2) repaying #elseif($!{item.orderStatus} == 3) overdue #end">
+                <!-- 0已取消 1放款中 2还款中 3已逾期 4已结清 7授权/开户中 5被拒绝 6审核中  -->
+                <span>$!{item.orderStatusText}</span>
+                <!-- <i class="icon icon-arrow-right"></i> -->
+            </div>
+        </div>
+        #end
+    </div>
+    #else
+    <div class="no-loan">
+      <img src="/static/images/unavailable.png" >
+      <p>您还没有借款记录</p>
+    </div>
+    #end
+</div>
+
+#if($!isNext == 1)
+<div class="weui-infinite-scroll js-refresh-box">
+  <div class="infinite-preloader"></div>
+  正在加载...
+</div>
+#end
+
+#if($!orderList)
+<p class="baseline hidden js-base-line"><span>我也是有底线的</span></p>
+#end
+
+<script type="text/javascript">
+    var BASEDATA = {
+        title:'$!title'
+    };
+    var globalData = {
+        isNext: '$!{isNext}' ? '$!{isNext}' : 0
+    };
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/loan/index.js"></script>
+#end
+#end

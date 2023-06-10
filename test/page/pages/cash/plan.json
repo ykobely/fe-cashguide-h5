@@ -1,0 +1,29 @@
+{
+    "code": 0,
+    "result": [
+        {
+            "borrowingDays": 12,
+            "isEachRepayMoney":true,
+            "eachRepayMoney": 2000.00,
+            "firstRepayDay": "08月22日",
+            "insuranceServiceMoney": 0,
+            "nper": 3,
+            "isRealPrincipal":true,
+            "realPrincipal": 1596.22,
+            "repayPlanDetailViewDtoList": [
+                {
+                    "existCoupon": false,
+                    "installmentAmount": 2000.00,
+                    "installmentNo": 1,
+                    "repayDay": "2018.08.22"
+                }
+            ],
+            "skuCode": "MOP2018040024-020",
+            "skuVersion": "2",
+            "vipServiceMoney": 0,
+            "name":"单期优惠券",
+            "couponSerialNo":"CP12345566"
+        }
+    ],
+    "status": 200
+}

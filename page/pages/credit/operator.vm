@@ -1,0 +1,69 @@
+#set($title = "运营商授权")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/accredit.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="main" id="layout">
+	<form action="" class="operator-form" method="post">
+		<input type="hidden" name="token" id="token">
+        <input type="hidden" name="website" id="website">
+		<div class="form-panel">
+			<div class="panel-line js-form-group">
+				<label class="control-label" for="">手机号</label>
+	            <div class="form-content form-position">
+	                <input type="text" name="phone" id="phone" readonly>
+	                <span class="mobileName"></span>
+	            </div>
+	            <div class="error-message js-error-message">
+	                <span class="js-error-message-text"></span>
+	            </div>
+			</div>
+			<div class="panel-line js-form-group">
+				<label class="control-label" for="">服务密码</label>
+	            <div class="form-content">
+	                <input type="password" name="password" placeholder="请输入服务密码" value="" maxlength="20">
+	            </div>
+	            <div class="error-message js-error-message">
+	                <span class="js-error-message-text"></span>
+	            </div>
+			</div>
+			<div class="panel-line js-form-group isp-verify">
+				<label class="control-label" for="">短信验证码</label>
+				<div class="form-code-box">
+		            <div class="form-content">
+		                <input type="text" name="captcha" placeholder="请输入动态验证码" value="" maxlength="20">
+		            </div>
+		            <a href="javascript:void(0);" class="code-btn js-code-btn">重新获取</a>
+	            </div>
+	            <div class="error-message js-error-message">
+	                <span class="js-error-message-text"></span>
+	            </div>
+			</div>
+		</div>
+		<div class="btn-wrap5">
+			<button type="submit" class="btn-submit js-submit-button">提交</button>
+		</div>
+		<div class="captchaTips"></div>
+		<div class="form-link">
+			<a href="https://s1.yyfq.com/cashguide-h/static/html/operator-help.html" class="warn-btn">忘记服务密码？</a>
+		</div>
+	</form>
+	 <div id="layout_footer"></div>
+</div>
+
+
+<script>
+    var BASEDATA = {
+		title:'$!title'
+	};
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/credit/operator.js"></script>
+
+#end
+#end

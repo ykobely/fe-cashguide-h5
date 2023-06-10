@@ -1,0 +1,80 @@
+#set($title = '一步获取额度')
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/credit.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<header id="method1">
+    <div class="banner"></div>
+    <div class="tip">
+        <i class="icon-suona"></i>
+        <div class="text">完成认证即可成功领取最高20000元现金额度，加油哦～</div>
+    </div>
+</header>
+<div class="panel top-border">
+    <div id="progressBox" style="display:none">
+        #parse("../pages/info/_progress.vm")
+    </div>
+    <div id="progressBox2" style="display:none">
+        #parse("../pages/info/_progress2.vm")
+    </div>
+    <section class="line theme" style="display:none"  id="method2">
+            <p class="title2">完成认证即可成功领取现金额度啦，加油哦～</p>
+        </section>
+    <section class="line box ">
+        <i class="icon icon-phone-active"></i>
+        <a href="javascript:;" class="major border-bottom">运营商</a>
+        <aside class="box-right border-bottom js-jump-btn" data-url="/credit/mobile">
+            #if($!mobileStatus == 2)
+            <a href="javascript:;" class="disabled">暂不可用</a>
+            #elseif($!mobileStatus == 1)
+            <a href="javascript:;" >已授权</a>
+            #else
+            <a href="javascript:;" class="will" data-status="0">未认证</a>
+            #end
+            <i class="icon-arrow-right">></i>
+        </aside>
+    </section>
+    <section class="line box">
+        <i class="icon icon-sesame"></i>
+        <a href="javascript:;" class="major">芝麻信用</a>
+        <aside class="box-right js-jump-btn" data-url="/credit/zhimaCredit">
+            #if($!zhiMaCrecitStatus == 1)
+            <a href="javascript:;">已授权</a>
+            #else
+            <a href="javascript:;" class="will" data-status="0">未认证</a>
+            #end
+            <i class="icon-arrow-right">></i>
+        </aside>
+    </section>
+    <section class="form-extra extra2">
+        <input type="checkbox" name="agree" class="ui-checkbox" id="agreementCheckbox" checked>
+		<label for="agreementCheckbox"></label>
+		<span>我已阅读并同意<a href="javascript:;" class="js-agreement-dialog-button" data-target="agreement-dialog-auth">《授权书》</a></span>
+    </section>
+    <div class="btn-wrap2">
+        <button type="submit" class="btn-submit js-submit-button">立即获取额度</button>
+    </div>
+</div>
+
+#parse('/page/pages/credit/_auth_agreement.vm')
+#parse('/page/pages/common/_tokenId_js.vm')
+
+<script type="text/javascript">
+	var BASEDATA = {
+		title:'$!title'
+	};
+    var globalData = {
+        mobileStatus:'$!mobileStatus',
+        zhiMaCrecitStatus:'$!zhiMaCrecitStatus'
+    }
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/bridge/credit.js"></script>
+#end
+
+#end

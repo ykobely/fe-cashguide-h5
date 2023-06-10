@@ -1,0 +1,32 @@
+#set($title = '解除绑定')
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/user.scss">
+#end
+
+#block('body')
+<!-- #parse("../pages/common/_header.vm") -->
+<div class="panel">
+    <div class="bind-box">
+        <div class="title">
+            <p class="inline">温馨提示：</p>
+            <p class="text-indent">你正在操作解绑，解绑后将不再受到还款提醒和其他重要信息推送。</p>
+        </div>
+        <div class="btn-wrap">
+            <a href="javascript:;" class="btn js-btn-logout">确定解除绑定</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var BASEDATA = {
+        title:'$!title'
+    };
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/user/index.js"></script>
+#end
+
+#end

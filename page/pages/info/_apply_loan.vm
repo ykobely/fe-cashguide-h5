@@ -1,0 +1,77 @@
+<!-- 取现金 -->
+#set($title="小贷鱼")
+<div class="panel-loan">
+    <div class="lxkf-box" id="easemobimBox" style="display: none;">
+        <a class="link" href="javascript:;" onclick='easemobim.bind()'>
+            <!-- <img class="icon-telephone" src="/static/images/icon-telephone.png" alt=""> -->
+            <img class="icon-message" src="/static/images/icon-message.png" alt="">
+            <span>联系客服</span>
+        </a>
+    </div>
+    <div class="boxshadow">
+        <div class="container-up">
+            <div class="box">
+                <p class="sub">
+                    <span>小贷鱼激活额度</span>
+                    <i class="icon-question-gray js-question-btn"></i>
+                </p>
+                <p class="money-wrap">
+                    <span class="line">
+                        <span class="unit">￥</span>
+                        <span class="money js-availableQuota-text2">$!availableQuota</span>
+                    </span>
+                </p>
+            </div>
+            <div class="wrap-btn">
+                <a class="btn #if($!availableQuota <= 0)disabled#end js-goUploadIDPic-btn" data-href="/user/userPhoto" href="javascript:;" target="_blank">立即取现</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-down">
+        <a class="line" href="/payment/contractList" target="_blank">
+            <aside class="left">
+                <img class="icon1" src="/static/images/icon-apply-1.png" alt="">
+            </aside>
+            <main>
+                <p class="item">我要还款</p>
+                <p class="sub">好借好还，再借不难</p>
+            </main>
+            <aside class="right">
+                <i class="icon icon-arrow"></i>
+            </aside>
+        </a>
+        <a class="line" href="/loan/view/orderList" target="_blank">
+            <aside class="left">
+                <img class="icon2" src="/static/images/icon-apply-2.png" alt="">
+            </aside>
+            <main>
+                <p class="item">取现记录</p>
+                <p class="sub">取的越多，额度越高</p>
+            </main>
+            <aside class="right">
+                <i class="icon icon-arrow"></i>
+            </aside>
+        </a>
+        <a class="line coupon" href="/loan/user/coupon/list" target="_blank">
+            <aside class="left">
+                <img class="icon3" alt="" src="/static/images/icon-coupon.png">
+            </aside>
+            <main>
+                <p class="item">我的优惠券</p>
+                <p class="sub">限时福利，实力宠你</p>
+            </main>
+            <aside class="right">
+                <span class="text">$!{userCouponCount}张可用</span>
+                <i class="icon icon-arrow"></i>
+            </aside>
+        </a>
+    </div>
+</div>
+<script>
+    window.easemobim = window.easemobim || {};
+    easemobim.config = {
+        configId: "74dd958a-20f0-4495-bbd8-d80b00260203",
+        hide: true,
+        autoConnect: true
+    };
+</script>

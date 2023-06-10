@@ -1,0 +1,125 @@
+#set($title = '优惠券')
+#set($usedNum = 0)
+#set($doUseNum = 0)
+
+
+#extends("../../layouts/main.vm")
+
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/coupon.scss">
+#end
+#if($!couponViewDtoList.size()==0)
+#block('body_attribute') class="no-coupon-body"#end
+#end
+#block('body')
+ <!-- #parse("../pages/common/_header.vm") -->
+<div class="panel">
+
+    #if($!userCouponList.size()>0)
+    <div class="coupon js-usable">
+        <!-- <div class="type"><span>可用优惠券</span></div> -->
+        #foreach($item in $!userCouponList)
+        #if($item.status != "N")
+            #set($usedNum = 1)
+        #else
+            #set($doUseNum = 1)
+        #end
+        #if($item.status == 'N')
+        <div class="coupon-box #if($!item.type == 'R')red#elseif($!item.type == 'D')yellow#end">
+            <!-- <i class="icon"></i> -->
+            <i class="icon-radio cursor js-coupon-check"></i>
+            <input type="hidden" value="$!item.serialNo" name="couponSerialNo">
+            <input type="hidden" value="$!item.name" name="couponName">
+            <div class="left">
+                <!-- <i></i> -->
+                <div class="circle top"></div>
+                <div class="circle bottom"></div>
+                <!-- <span>#if($!item.type == "R")免息券#elseif($!item.type == "D")减免券#end</span> -->
+            </div>
+            <div class="right">
+                <div class="r-top">
+                    <h3>$!item.name</h3>
+                    <div class="state">$!item.desc</div>
+                    <div class="time">$!item.startDate - $!item.endDate可用</div>
+                </div>
+                <div class="r-bottom">$!item.comment</div>
+                <a class="btn btn-use" href="/user/userPhoto">去使用</a>
+            </div>
+        </div>
+        #end
+        #end
+    </div>
+
+    <!-- 存在未使用、已使用 -->
+    #if($!usedNum == 1 && $doUseNum == 1)
+    <div class="view-history-btn">
+        <a href="javascript:;" class="js-view-history-btn down">
+            <span>查看已使用优惠券</span>
+            <i class="icon down"></i>
+        </a>
+    </div>
+    #end
+
+    <!-- 不存在未使用 -->
+    #if($!doUseNum == 0)
+    <div class="no-coupon">
+            <img src="/static/images/no-coupon.png" alt="">
+            <span>暂无可用优惠券</span>
+        </div>
+    #end
+
+    <div class="coupon disabled js-coupon" style="display: none;">
+        #foreach($item in $!userCouponList)
+        #if($item.status != "N")
+        <div class="coupon-box">
+            <!-- #if($item.status == 'U' || $item.status == 'S')<i class="icon-used"></i>#end -->
+            #if($item.status == 'E')<i class="icon-dated"></i>#end
+            #if($item.status == 'F')<i class="icon-failure"></i>#end
+            <!-- <i class="icon"></i> -->
+            <i class="icon-radio cursor js-coupon-check"></i>
+            <input type="hidden" value="$!item.serialNo" name="couponSerialNo">
+            <input type="hidden" value="$!item.name" name="couponName">
+            <div class="left">
+                <!-- <i></i> -->
+                <div class="circle top"></div>
+                <div class="circle bottom"></div>
+                <!-- <span>#if($!item.type == "R")免息券#elseif($!item.type == "D")减免券#end</span> -->
+            </div>
+            <div class="right">
+                <div class="r-top">
+                    <h3 class="disabled">$!item.name</h3>
+                    <div class="state disabled">$!item.desc</div>
+                    <div class="time disabled">$!item.startDate ~ $!item.endDate可用</div>
+                </div>
+                <div class="r-bottom disabled">$!item.comment</div>
+                #if($item.status == 'U' || $item.status == 'S')
+                <a class="btn btn-use disabled" href="javascript:;">已使用</a>
+                #end
+            </div>
+        </div>
+        #end
+        #end
+    </div>
+    #else
+    <div class="no-coupon">
+        <img src="/static/images/no-coupon.png" alt="">
+        <span>暂无可用优惠券</span>
+    </div>
+    #end
+
+
+
+</div>
+
+<script type="text/javascript">
+	var BASEDATA = {
+        title:'$!title',
+        userCouponSize:'$!userCouponList.size()'
+    };
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/user/coupon.js"></script>
+#end
+
+#end

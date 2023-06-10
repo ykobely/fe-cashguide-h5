@@ -1,0 +1,41 @@
+<!-- 信用历史 -->
+<div id="credit-history-form" class="agreement credit-history js-agreement" style="display:none;">
+    <div class="agreement-title ">
+        <a href="#" class="agreement-btn-close js-agreement-back-button js-credit-close-btn" data-callbackHide="hideCreditDialog()"></a>
+        <img class="icon" src="/static/images/icon-credit-card.png" />
+        <p class="title-text">请根据实际情况填写您的以下信用历史</p>
+	</div>
+    <form class="credit-history-form">
+    	<div class="agreement-content">
+            <div class="credit-history-content">
+                <div class="form-inline">
+                    <label>信用卡发生过逾期账户数</label>
+                    <input type="text" name="creditCardOverdueAccount" value="0" placeholder="请填写" maxlength="8">
+                </div>
+                <div class="form-inline">
+                    <label>信用卡发生过90天以上逾期的账户数</label>
+                    <input type="text" name="creditCardOverdueNinetyAccount" value="0" placeholder="请填写" maxlength="8">
+                </div>
+                <div class="form-inline">
+                    <label>贷款发生过逾期账户数</label>
+                    <input type="text" name="loanOverdueAccount" value="0" placeholder="请填写" maxlength="8">
+                </div>
+                <div class="form-inline">
+                    <label>贷款发生过90天以上逾期的账户数</label>
+                    <input type="text" name="loanOverdueNinetyAccount" value="0" placeholder="请填写" maxlength="8">
+                </div>
+                <div class="form-inline">
+                    <label>信用卡逾期金额</label>
+                    <input type="text" name="creditCardOverdueAmount" value="0" placeholder="请填写" maxlength="8">
+                </div>
+                <div class="form-inline">
+                    <label>贷款逾期金额</label>
+                    <input type="text" name="loanOverdueAmount" value="0" placeholder="请填写" maxlength="8">
+                </div>
+            </div>
+    	</div>
+        <div class="btn-wrap">
+            <button type="button" class="btn btn-primary js-submit-credit">确认</button>
+        </div>
+    </form>
+</div>

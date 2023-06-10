@@ -1,0 +1,72 @@
+#set($title = "我的合同")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/contract.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="main">
+    #if($contractList && $contractList.size() != 0)
+        #foreach($!item in $!contractList)
+        <div class="contract-panel">
+            <div class="panel-top">
+                <span>订单号：$!item.contractNo</span>
+                <span>激活日：$!item.applyTime</span>
+            </div>
+            <ul class="panel-center">
+                <li>
+                    <div class="num #if($!item.contractStatus == 4)gray#end">$!item.loanPricipal</div>
+                    <div class="name">申请金额</div>
+                </li>
+                <li>
+                    <div class="num #if($!item.contractStatus == 5 || $!item.contractStatus == 6) red #elseif($!item.contractStatus == 4) gray #else blue #end">$!item.currentAmount</div>
+                    <div class="name">当前应还</div>
+                </li>
+                <li>
+                    <div class="num #if($!item.contractStatus == 4)gray#end">$!item.monthly<span class="f24">号</span></div>
+                    <div class="name">每月还款日</div>
+                </li>
+            </ul>
+            <div class="panel-bottom">
+                <a href="/payment/contractDetail?contractNo=$!item.contractNo&channelCode=$!item.channelCode" class="gray">订单详情</a>
+                #if($!item.contractStatus != 4 && $!item.currentAmount != 0)
+                <!-- <a href="/user/payment/detail?contractNo=$!item.contractNo&currentPeriod=0" #if($!item.contractStatus == 5 || $!item.contractStatus == 6)class="red"#end>去还款</a> -->
+                <a href="/payment/order/loanTracks?contractNo=$!item.contractNo" #if($!item.contractStatus == 5 || $!item.contractStatus == 6)class="red"#end>去还款</a>
+                #end
+            </div>
+            #if($!item.contractStatus == 5 || $!item.contractStatus == 6)
+                <div class="re-stamp yuqi"></div>
+            #elseif($!item.contractStatus == 4)
+                <div class="re-stamp jieqing"></div>
+            #end
+        </div>
+        #end
+    #else
+    <div class="contract-panel no-data">
+		<img src="/static/images/icon-system-error.png">
+		<div class="des">
+			<p class="title">暂无合同</p>
+			<p class="sub">可前往首页申请</p>
+		</div>
+	</div>
+    #end
+</div>
+
+<!-- #parse("../pages/common/_nav.vm") -->
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/common/common.js"></script>
+<script>
+    $(function(){
+        var size = '$!contractList.size()';
+        if(size === '0' || size === ''){
+            $('body').css('background','#fff');
+        }
+        $('.ui-nav li.second').addClass('active');
+    });
+</script>
+
+#end
+#end

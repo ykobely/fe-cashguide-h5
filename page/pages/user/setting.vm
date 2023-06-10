@@ -1,0 +1,36 @@
+#set($title = '设置')
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/user.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="my-panel">
+    <div class="panel-body other">
+        <ul class="columns-ul">
+            <li>
+                <a class="columns " href="/user/other/unbind">
+                    <main class="main">解除微信绑定</main>
+                    <aside class="side-l">
+                        <img src="/static/images/icon-unbind.png">
+                    </aside>
+                    <aside class="side-r"></aside>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var BASEDATA = {
+        title:'$!title'
+    };
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/common/common.js"></script>
+#end
+
+#end

@@ -1,0 +1,11 @@
+## 导航条2
+<div class="progress progress2">
+    <div class="image-box">
+        <img src="/static/images/icon-progress-4.png" />
+        <img src="/static/images/icon-progress-5.png" style="display:none;"  />
+    </div>
+    <div class="text-box">
+        <span class="active">补充信息</span>
+        <span class="last">最后一步</span>
+    </div>
+</div>

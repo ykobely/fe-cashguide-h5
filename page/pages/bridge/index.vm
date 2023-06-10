@@ -1,0 +1,23 @@
+#set($title = '一步获取额度')
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/bridge.scss">
+#end
+
+#block('body')
+<div class="index-box">
+    <a href="/user/personalInfo" class="btn"></a>
+</div>
+
+<script type="text/javascript">
+	var BASEDATA = {
+		title:'$!title'
+	};
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/common/common.js"></script>
+#end
+
+#end

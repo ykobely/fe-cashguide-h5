@@ -1,0 +1,8 @@
+<div class="ui-header h5">
+    <div class="ui-bar">
+        <p class="title">$!title</p>
+        <!-- <a href="javascript:;" class="ui-logout js-logout-ht" >
+            注销
+        </a> -->
+    </div>
+</div>

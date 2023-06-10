@@ -1,0 +1,397 @@
+#set( $title = '取现金' )
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/borrow.scss">
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+    //  银行logo
+     function imgError(image){
+        image.onerror = "";
+        image.src = $('.js-error-bank-logo').prop('src');
+        return true;
+     }
+</script>
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="panel">
+    #if(!$!{cashLoanInfoDto.availableQuota} || $!{cashLoanInfoDto.availableQuota} == 0 || $!{cashLoanInfoDto.availableQuota} == '')
+    <div class="unavailable-box">
+        <img src="/static/images/icon-system-error.png" >
+        <div class="des">
+            <h2>暂无取现额度</h2>
+            <p>不支持主动申请</p>
+            <p>保持良好的还款记录即有机会获得取现额度</p>
+        </div>
+    </div>
+    #else
+    <div class="borrow-box">
+        <form class="borrow-form">
+            <input type="hidden" name="skuCode" value="">
+            <input type="hidden" name="skuVersion" value="">
+            <div class="form-container">
+                <div class="form-inline large relative">
+                    <div class="form-label">借多少</div>
+                    <div class="form-main large availableQuota-wrap cursor js-availableQuota-show" >$!{cashLoanInfoDto.availableQuota}</div>
+                    <input type="number" name="availableQuota" min="0" step="1" inputmode="numeric" pattern="[0-9]*" onpaste="return false;" class="hidden" value="$!{cashLoanInfoDto.availableQuota}">
+                </div>
+                <div class="form-inline arrow relative js-agreement-dialog-button cursor" data-target="nper-dialog" data-callbackShow="showNperDialog">
+                    <div class="form-label">借多久</div>
+                    <div class="form-main " id="showMonth" >
+                        <span class="placeholder">请选择</span>
+                    </div>
+                    <div class="form-right icon icon-arrow-right"></div>
+                    <div class="icon-transparent absolute cursor js-agreement-dialog-button" data-target="nper-dialog" data-callbackShow="showNperDialog"></div>
+                    <input type="hidden" name="nper">
+                </div>
+                <div class="form-inline arrow relative">
+                    <div class="form-label">实际到账</div>
+                    <div class="form-main" id="realPrincipal"></div>
+                    <div class="form-right icon icon-question js-realPrincipal-question cursor js-agreement-dialog-button" data-target="agreement-dialog-real"></div>
+                    <div class="icon-transparent absolute cursor js-realPrincipal-question js-agreement-dialog-button" data-target="agreement-dialog-real"></div>
+                    <input type="hidden" name="realPrincipal" placeholder="自动计算">
+                </div>
+                <div class="form-inline arrow relative  js-businessChannel-item" style="display:none;"  data-businessChannel="105">
+                    <div class="form-label" >首期还款日</div>
+                    <div class="form-main firstRepayDay"></div>
+                    <div class="form-right icon icon-question js-firstRepayDay-question cursor"></div>
+                    <div class="icon-transparent absolute cursor js-firstRepayDay-question"></div>
+                    <input type="hidden" name="firstRepayDay" value="">
+                </div>
+                <div class="form-inline arrow relative js-businessChannel-item" style="display:none;" data-businessChannel="105">
+                    <div class="form-label">每期还款</div>
+                    <div class="form-main js-select-plan cursor" >
+                        <span class="has-plan">
+                            <span class="detail" >预计每期还款<span class="eachRepayMoney"></span>元</span>
+                            <span class="text-btn">详情</span>
+                        </span>
+                        <span class="no-plan hidden">自动生成</span>
+                    </div>
+                    <div class="form-right icon icon-arrow-right js-select-plan cursor"></div>
+                    <div class="icon-transparent absolute cursor js-select-plan"></div>
+                    <input type="hidden" name="plan" placeholder="自动生成">
+                </div>
+                <div class="form-inline arrow relative  js-businessChannel-item" style="display:none;"  data-businessChannel="104">
+                    <div class="form-label">还款时间</div>
+                    <div class="form-main firstRepayDay" ></div>
+                    <div class="form-right icon icon-question js-firstRepayDay-question cursor"></div>
+                    <div class="icon-transparent absolute cursor js-firstRepayDay-question"></div>
+                    <input type="hidden" name="firstRepayDay" value="">
+                </div>
+                <div class="form-inline arrow relative js-businessChannel-item" style="display:none;" data-businessChannel="104">
+                    <div class="form-label">应还金额</div>
+                    <div class="form-main" >预计应还<span class="eachRepayMoney"></span></div>
+                    <input type="hidden" name="repaymoney" value="">
+                </div>
+                <div class="form-inline arrow relative">
+                    <div class="form-label">借款用途</div>
+                    <div class="form-main js-select-usage cursor" id="showUsage">$!cashLoanInfoDto.loanPurposeViewDtoList.get(0).desc</div>
+                    <div class="form-right icon icon-arrow-right js-select-usage cursor"></div>
+                    <div class="icon-transparent absolute cursor js-select-usage"></div>
+                    <input type="hidden" name="loanPurposeCode" value="$!cashLoanInfoDto.loanPurposeViewDtoList.get(0).code">
+                </div>
+                <div class="form-inline arrow relative">
+                    <div class="form-label">信用历史</div>
+                    <div class="form-main cursor js-agreement-dialog-button js-credit-btn" data-target="credit-history-form" data-callbackShow="showCreditDialog()" id="hasOverdueHistory">
+                        #if($!cashLoanInfoDto.hasOverdueHistory) 本人存在逾期历史
+                        #else 本人无逾期历史
+                        #end
+                    </div>
+                    <div class="form-right icon icon-arrow-right cursor js-agreement-dialog-button js-credit-btn" data-target="credit-history-form" data-callbackShow="showCreditDialog()"></div>
+                    <div class="icon-transparent absolute cursor js-agreement-dialog-button js-credit-btn" data-target="credit-history-form" data-callbackShow="showCreditDialog()"></div>
+                </div>
+                <div class="form-inline">
+                    <label class="form-label">身份证有效期</label>
+                    <div class="form-main js-idCardInDate cursor" id="idCardInDate" >
+                        <span class="placeholder">请选择</span>
+                    </div>
+                    <div class="form-right icon icon-arrow-right"></div>
+                    <div class="icon-transparent absolute cursor js-idCardInDate" ></div>
+                </div>
+
+                <div class="form-inline merge arrow relative" style="display:none;" parentId-for="vipServiceMoney">
+                    <div class="form-label">
+                        <input type="checkbox" name="vipServicePack" class="ui-checkbox" id="vipServicePack">
+                        <label for="vipServicePack"></label>
+                        <span>VIP服务包</span>
+                    </div>
+                    <div class="form-main"><span id="vipServiceMoney"></span>元/期</div>
+                    <div class="form-right icon icon-question js-vipServicePack-question cursor"></div>
+                    <div class="icon-transparent absolute cursor js-vipServicePack-question"></div>
+                </div>
+                <div class="form-inline merge arrow relative" style="display:none;" parentId-for="insuranceServiceMoney">
+                    <div class="form-label">
+                        <input type="checkbox" name="insurance" class="ui-checkbox" id="insurance">
+                        <label for="insurance"></label>
+                        <span>保险</span>
+                    </div>
+                    <div class="form-main"><span id="insuranceServiceMoney"></span>元/期</div>
+                    <div class="form-right icon icon-question js-insurance-question cursor js-agreement-dialog-button" data-target="agreement-dialog-safe"></div>
+                    <div class="icon-transparent absolute cursor js-insurance-question js-agreement-dialog-button" data-target="agreement-dialog-safe"></div>
+                </div>
+                <div class="form-inline arrow relative height-auto">
+                    <div class="form-label">优惠券</div>
+                    <div class="form-main js-coupon cursor #if($!{cashLoanInfoDto.userCouponList.size()} > 0)red #else gray #end" >
+                        <span class="bg-red">
+                            #if($!{cashLoanInfoDto.userCouponList.size()} > 0) $!{cashLoanInfoDto.userCouponList.size()}个可用
+                            #else 暂无可用
+                            #end
+                        </span>
+                    </div>
+                    <div class="form-right icon icon-arrow-right js-coupon cursor"></div>
+                </div>
+        </div>
+            <div class="form-container tip-wrap"></div>
+            <div class="form-container excep">
+                <div class="form-inline js-select-bankname cursor">
+                    <label class="form-label" for="">收款银行</label>
+                    <div class="form-main js-select-bankname cursor" id="bankName">
+                        <span class="placeholder">请选择</span>
+                    </div>
+                    <div class="form-right icon icon-arrow-right js-select-bankname cursor"></div>
+                    <div class="icon-transparent absolute cursor js-select-bankname"></div>
+                    <input type="hidden" name="bankName" value="">
+                </div>
+                <div class="form-inline arrow relative">
+                    <div class="form-label">银行卡号</div>
+                    <div class="form-main">
+                        <input type="text" class="normal-input" name="bankCardNo" placeholder="必填" maxlength="23" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')" value="$!cashLoanInfoDto.bankCardNo">
+                    </div>
+                </div>
+                <div class="form-inline arrow relative">
+                    <div class="form-label">银行预留手机号</div>
+                    <div class="form-main">
+                        <input type="tel" placeholder="必填" class="normal-input" name="bankMobile" maxlength="11" value="$!{cashLoanInfoDto.bankMobile}">
+                    </div>
+                </div>
+            </div>
+            <div class="form-container-footer">
+                <div class="btn-wrap">
+                    <button type="button" class="btn js-submit-btn disabled">确认借钱</button>
+                </div>
+                <div class="form-extra js-businessChannel-extra" style="display:none;">
+                    <input type="checkbox" name="agree" class="ui-checkbox" id="agreementCheckbox">
+                    <label for="agreementCheckbox"></label>
+                    <span>本人已阅读并同意<a href="javascript:;" class="js-agreement-dialog-button js-businessChannel-item" id="business104ContractBtn" data-target="agreement-dialog-day" style="display:none;" data-businessChannel="104">《借款服务合同》</a><a href="javascript:;" class="js-agreement-dialog-button js-businessChannel-item" data-target="agreement-dialog-month" style="display:none;" data-businessChannel="105">《借款服务合同》</a>与<a href="javascript:;" class="js-agreement-dialog-button" data-target="agreement-dialog1">《仲裁协议》</a></span>
+                </div>
+            </div>
+        </form>
+    </div>
+    #end
+</div>
+
+
+<!-- 借多久 -->
+<div id="nper-dialog" class="agreement js-agreement" style="display:none;">
+    <!-- <div class="agreement-title">
+        <a href="#" class="agreement-btn-close js-agreement-back-button">关闭</a>
+        借多久
+    </div> -->
+    <div class="agreement-content">
+        #foreach($dto in $!{cashLoanInfoDto.repaymentInfoDtoList})
+            #if($!dto.businessChannel && $!dto.businessChannel != '')
+            <section class="section">
+                <div class="title">
+                    <div class="left">
+                        #if($dto.businessChannel == 104)
+                        <span class="h1">按日借款</span>
+                        <span class="h2">方便快捷，随借随还</span>
+                        #elseif($dto.businessChannel == 105)
+                        <span class="h1">按月借款</span>
+                        <span class="h2">按月还款压力小</span>
+                        #end
+                    </div>
+                    #if($!dto.availableQuota)
+                    <div class="right">当前可借$!{dto.availableQuota}元</div>
+                    #end
+                </div>
+                <div class="checkboxes js-agreement-back-button cursor" data-callbackHide="hideNperDialog">
+                    #foreach($item in $!{dto.repayPlanViewDtoList})
+                    #set($value = $!item.nper)
+                    #if($dto.businessChannel == 104)
+                        #set($value = $!item.borrowingDays)
+                    #end
+                    <div class="box">
+                        <input type="radio" name="nperItem" class="ui-checkbox js-nper-checkboxitem" data-value="$!value" data-businessChannel="$!dto.businessChannel" data-marketPlanCode="$!dto.marketPlanCode" data-availableQuota="$!dto.availableQuota" >
+                        <label for="date7" class="js-agreement-back-button cursor" data-callbackHide="hideNperDialog" ></label>
+                        <span>
+                            $!value
+                            #if($dto.businessChannel == 104) 天
+                            #elseif($dto.businessChannel == 105) 个月
+                            #end
+                        </span>
+                    </div>
+                    #end
+                </div>
+            </section>
+            #end
+        #end
+    </div>
+</div>
+
+<div class="plan-preview-box hidden js-plan-preview">
+    <div class="preview-body">
+        <ul>
+            <li class="label">
+                <span>还款计划预览</span>
+                <i class="icon icon-close js-close-btn cursor"></i>
+            </li>
+            <li class="title js-plan-title">
+                <div>期数</div><div>还款日</div><div>应还金额</div>
+            </li>
+        </ul>
+        <ul class="js-wrap-ul">
+
+        </ul>
+    </div>
+</div>
+
+<div class="plan-preview-box hidden js-usage-preview">
+    <div class="preview-body">
+        <ul>
+            <li class="label gray mulitple">
+                <span>请选择实际资金用途<br/>禁止用于购房、投资及各种非消费场景</span>
+                <i class="icon icon-close js-close-btn cursor"></i>
+            </li>
+            <li class="title empty"></li>
+            #foreach($item in $!{cashLoanInfoDto.loanPurposeViewDtoList})
+                <li class="content js-usage-item cursor">
+                    <div>$!{item.desc}</div>
+                    <input type="hidden" value="$!{item.code}">
+                </li>
+            #end
+        </ul>
+    </div>
+</div>
+
+<div class="plan-preview-box hidden js-bankname-preview">
+    <div class="preview-body">
+        <ul>
+            <li class="label gray mulitple">
+                <span>请选择还款银行</span>
+                <i class="icon icon-close js-close-btn cursor"></i>
+            </li>
+            <li class="title empty"></li>
+        </ul>
+        <ul id="bankList"></ul>
+    </div>
+</div>
+
+<div class="plan-preview-box hidden js-coupon-preview">
+    <div class="preview-body">
+        <ul>
+            <li class="label">
+                <span>我的优惠券</span>
+                <i class="icon icon-close js-close-btn cursor"></i>
+            </li>
+        </ul>
+        <div class="coupon js-coupon-list">
+            #foreach($item in $!cashLoanInfoDto.userCouponList)
+            <div class="coupon-box #if($!item.type == 'R')red#elseif($!item.type == 'D')yellow#end">
+                <i class="icon"></i>
+                <i class="icon-radio cursor js-coupon-check"></i>
+                <input type="hidden" value="$!item.serialNo" name="couponSerialNo">
+                <input type="hidden" value="$!item.name" name="couponName">
+                <div class="left">
+                    <div class="circle top"></div>
+                    <div class="circle bottom"></div>
+                    <i></i>
+                    <!-- <span>#if($!item.type == "R")免息券#elseif($!item.type == "D")减免券#end</span> -->
+                </div>
+                <div class="right">
+                    <div class="r-top">
+                        <h3>$!item.name</h3>
+                        <div class="state">$!item.desc</div>
+                        <div class="time">$!item.startDate ~ $!item.endDate可用</div>
+                    </div>
+                    <div class="r-bottom">$!item.comment</div>
+                </div>
+            </div>
+            #end
+        </div>
+    </div>
+</div>
+
+<div class="loanMoneyContainer"></div>
+
+<script type="text/html" id="sendDialog">
+    <div class="dialog-form">
+        <p class="label">
+            <span>验证码已发送到：</span>
+            <span class="focus" id="userMobile"></span>
+        </p>
+        <div class="form-inline disabled">
+            <div class="input"><input type="number" name="verificationCode" class="verify-code js-keypress" ></div>
+            <div class="middle js-middle">|</div>
+            <div class="btn"><button type="button" name="button" class="disabled js-captcha-btn" data-type="1"></button></div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="sendAuthDialog">
+    <div class="dialog-form">
+        <p class="label">
+            <span class="multipe">为保证您的正常还款，请完成银行卡代扣签约，银行卡号************<span class="focus" id="bankCardCode"></span>。验证码已发送至银行预留手机号：<span class="focus" id="bankMobile"></span></span>
+        </p>
+        <div class="form-inline disabled">
+            <div class="input"><input type="number" name="verificationCode" class="verify-code js-keypress" ></div>
+            <div class="middle js-middle">|</div>
+            <div class="btn"><button type="button" name="button" class="disabled js-captcha-btn" data-type="2"></button></div>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/html" id="closeModal">
+    <div class="close-modal-btn">&nbsp;</div>
+</script>
+
+#parse('/page/pages/cash/_contract-day.vm')
+#parse('/page/pages/cash/_contract-month.vm')
+#parse('/page/pages/cash/_arbitration.vm')
+#parse('/page/pages/cash/_safe-agreement.vm')
+#parse('/page/pages/cash/_real-question.vm')
+#parse('/page/pages/cash/_credit-history-form.vm')
+#parse('/page/pages/common/_tokenId_js.vm')
+#parse('/page/pages/cash/_borrow_104_item.vm')
+
+
+<!-- #parse("../pages/common/_nav.vm") -->
+<script type="text/javascript">
+    var BASEDATA = {
+        title:'$!title'
+    };
+
+    // 还款计划
+    var repaymentInfoDtoList = [
+        #foreach($dto in $!{cashLoanInfoDto.repaymentInfoDtoList})
+            #if($foreach.index >  0),#end
+            {businessChannel:'$!dto.businessChannel',marketPlanCode:'$!dto.marketPlanCode',repayPlanViewDtoList:[
+                #foreach($item in $!{dto.repayPlanViewDtoList})
+        			#if($foreach.index >  0),#end
+        			{eachRepayMoney:'$!item.eachRepayMoney',firstRepayDay:'$!item.firstRepayDay',nper:'$!item.nper',borrowingDays:'$!item.borrowingDays',realPrincipal:'$!item.realPrincipal',skuCode:'$!item.skuCode',skuVersion:'$!item.skuVersion',vipServiceMoney:'$!item.vipServiceMoney',insuranceServiceMoney:'$!item.insuranceServiceMoney',repayPlanDetailViewDtoList:[
+                        #foreach($plan in $!{item.repayPlanDetailViewDtoList})
+                            #if($foreach.index >  0),#end
+                            {installmentAmount:'$!plan.installmentAmount',installmentNo:'$!plan.installmentNo',repayDay:'$!plan.repayDay'}
+                        #end
+                    ]}
+        		#end
+            ]}
+        #end
+	];
+
+    var volecityData = {
+        availableQuota:"$!{cashLoanInfoDto.availableQuota}",//可用额度
+        repaymentInfoDtoList:repaymentInfoDtoList,//还款计划-详情
+        bankName:'$!{cashLoanInfoDto.bankName}', // 银行名称
+        idCardExpiry:'$!{cashLoanInfoDto.idCardExpiry}', //身份证有效期
+        pdlLoanHtmlSwitch:'$!{cashLoanInfoDto.pdlLoanHtmlSwitch}',//104业务线开关--显示方式（1显示温馨提示，2原来的显示方式）
+    };
+
+</script>
+<script src="/static/scripts/pages/cash/borrow.js"></script>
+#end
+#end

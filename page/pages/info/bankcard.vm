@@ -1,0 +1,105 @@
+#set($title = "银行卡照片")
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/info.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="main">
+    #parse("../pages/info/_progress.vm")
+	<form class="idcard-form" action="" method="post">
+		<div class="photo-form-panel3">
+			<div class="photo-box">
+	            <div class="photo-upload">
+	                <div class="photo-upload-cursor js-photo-upload-wrap">
+						<img src="$!bankPhoto" class="js-imgUrl" alt="" style="display:none;">
+	                    <a class="close-btn js-close-btn" href="javascript:void(0)"></a>
+	                    <span class="icon icon-photo-take-button"></span>
+	                    <span class="text text-phone-take-button">点击拍摄银行卡照片</span>
+	                    <input type="hidden" name="type" value="3">
+	                    <input type="hidden" class="js-url-input" name="bankPhoto" value="$!bankPhoto">
+	                    <input type="file" name="file" accept="image/*" class="photo-upload-input" data-type="7">
+	                    <span class="photo-upload-progress-info">
+	                        <span class="photo-upload-progress-info-icon">
+	                            <span class="js-photo-info-text photo-info-18"></span>
+	                            <span class="js-photo-info-text photo-info-24"></span>
+	                        </span>
+	                    </span>
+	                    <iframe name="iframe-input-7" style="display:none;"></iframe>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+		<div class="form-panel">
+			<div class="panel-line js-form-group">
+				<label class="control-label" for="">银行</label>
+	            <div class="form-content">
+					<div class="ui-select">
+	                    <span class="js-text">
+	                        请选择
+	                    </span>
+                        <select name="bankName">
+							<option value="">请选择</option>
+                            <option value="中国工商银行">中国工商银行</option>
+                            <option value="中国银行">中国银行</option>
+                            <option value="中国农业银行">中国农业银行</option>
+                            <option value="中国建设银行">中国建设银行</option>
+                            <option value="广东发展银行">广东发展银行</option>
+                            <option value="兴业银行">兴业银行</option>
+                            <option value="中国光大银行">中国光大银行</option>
+                            <option value="平安银行">平安银行</option>
+                            <option value="交通银行">交通银行</option>
+                        </select>
+                    </div>
+	            </div>
+			</div>
+	        <div class="panel-line js-form-group">
+				<label class="control-label" for="">卡号</label>
+	            <div class="form-content">
+	                <input type="text" name="bankCardNo" placeholder="请输入银行卡号" value="$!bankCardNo" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')">
+	            </div>
+			</div>
+			<div class="panel-line js-form-group">
+				<label class="control-label" for="">预留手机号</label>
+	            <div class="form-content">
+	                <input type="text" name="bankMobile" placeholder="请输入预留手机号" value="$!bankMobile" maxlength="11">
+	            </div>
+			</div>
+		</div>
+		<div class="error-box js-error-box"></div>
+		<div class="btn-wrap2">
+			<button type="submit" class="btn-submit js-submit-button">下一步</button>
+		</div>
+	</form>
+</div>
+
+<script type="text/html" id="sendDialog">
+    <div class="dialog-form">
+        <p class="label">
+            <span>银行验证码已下发，输入验证码完成银行认证</span>
+            <span class="focus" id="userMobile"></span>
+        </p>
+        <div class="form-inline disabled">
+            <div class="input"><input type="number" name="verificationCode" class="verify-code js-keypress" ></div>
+            <div class="middle js-middle">|</div>
+            <div class="btn"><button type="button" name="button" class="disabled js-captcha-btn"></button></div>
+        </div>
+    </div>
+</script>
+
+
+#parse('/page/pages/info/auth-success.vm')
+#parse('/page/pages/info/auth-timer.vm')
+
+<script>
+	var globalData = {
+		bankName:'$!bankName',
+		bankCardNo:'$!bankCardNo'
+	}
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/info/idcard.js"></script>
+#end
+#end

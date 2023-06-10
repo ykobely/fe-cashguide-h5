@@ -1,0 +1,73 @@
+#set($title = "信息验证")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/login-h5.scss">
+#end
+
+#block('body')
+<div class="loginH5">
+	<div class="logo">
+		<img src="/static/images/logo-login-h5.png" alt="">
+    </div>
+
+    <div class="container">
+        <p class="title">您<span class="yellow">已获得额度</span>，登录即可取现</p>
+        <form class="login-form">
+            <input type="hidden" name="openId">
+            <div class="box">
+                <div class="block-inline shadow">
+                    <input type="tel" id="mobile" name="mobile" class="phone" placeholder="请输入手机号码" maxlength="11"/>
+                    <a href="javascript:;" class="btn-remove" style="display: none;">
+                        <i class="icon icon-remove"></i>
+                    </a>
+                </div>
+                <div class="block-inline" style="display:none;">
+                    <input type="hidden" placeholder="验证码" class="normal-input" name="picRandom" id="picRandom">
+                </div>
+                <div class="block-inline">
+                    <input type="text" class="sms" name="smsCode" placeholder="请输入短信验证码" maxlength="6"/>
+                    <a href="javascript:;" class="btn-code js-captcha-h5">获取验证码</a>
+                </div>
+            </div>
+            <div class="btn-wrap">
+                <button type="submit" class="btn js-submit-button">立即取现</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="picCodeDialog" class="mask" style="display:none;">
+    <div class="dialog">
+        <header>
+            请输入图形验证码
+            <a href="javascript:;" class="btn-close">
+                <img src="/static/images/icon-remove2.png" alt="">
+            </a>
+        </header>
+        <div class="body">
+            <div class="inline">
+                <input type="text" placeholder="请输入" id="picRandomTemp">
+                <div class="img-code">
+                    <img src="/verify/verifyCode" id="img-code">
+                </div>
+            </div>
+        </div>
+        <footer>
+            <button class="btn js-sms-btn"></button>
+        </footer>
+    </div>
+</div>
+
+<script type="text/javascript">
+	var BASEDATA = {
+		title:'$!title'
+	};
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/user/login.js"></script>
+#end
+
+#end

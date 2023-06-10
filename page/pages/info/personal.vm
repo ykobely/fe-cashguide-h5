@@ -1,0 +1,184 @@
+#set($title = "个人信息")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/info.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="main">
+    #parse("../pages/info/_progress.vm")
+	<form action="" class="personal-form" method="post">
+        <div class="form-title-line">
+            <label>基本信息</label>
+        </div>
+        <div class="form-panel no-margin-top">
+            <div class="panel-line js-form-group">
+                <label class="control-label" for="">姓名</label>
+                <div class="form-content">
+                    <input type="text" name="username" placeholder="请输入姓名" value="$!username">
+                </div>
+            </div>
+            <div class="panel-line js-form-group">
+                <label class="control-label" for="">身份证号</label>
+                <div class="form-content">
+                    <input type="text" name="idCardNo" placeholder="请输入身份证号" value="$!idCardNo" maxlength="18">
+                </div>
+            </div>
+            <div class="panel-line js-form-group border-bottom">
+				<label class="control-label" for="">婚姻状况</label>
+    	        <div class="form-content">
+    	            <div class="ui-select">
+                        <span class="js-text">
+                          请选择
+                        </span>
+                        <select name="marriageStatus">
+                            <option value="">请选择</option>
+                            <option value="1">未婚</option>
+                            <option value="2">已婚有子女</option>
+                            <option value="3">已婚无子女</option>
+                            <option value="4">其他</option>
+                        </select>
+                    </div>
+    	        </div>
+			</div>
+            <div class="panel-line js-form-group border-bottom">
+				<label class="control-label" for="">学历</label>
+    	        <div class="form-content">
+    	            <div class="ui-select">
+                        <span class="js-text">
+                          请选择
+                        </span>
+                        <select name="eduStatus">
+                            <option value="">请选择</option>
+                            <option value="8">博士</option>
+                            <option value="7">硕士</option>
+                            <option value="6">第二学士学位</option>
+                            <option value="4">本科</option>
+                            <option value="3">专科</option>
+                            <option value="2">高中</option>
+                            <option value="1">初中及以下</option>
+                            <option value="9">其他</option>
+                        </select>
+                    </div>
+    	        </div>
+			</div>
+            <div class="panel-line js-form-group">
+                <label class="control-label" for="">现居住地址</label>
+                <div class="form-content select-box">
+                    <div class="ui-select">
+                        <span class="js-text city-ui-select-text">省</span>
+                        <select name="province">
+                            <option value="">省</option>
+                        </select>
+                    </div>
+                    <div class="ui-select">
+                        <span class="js-text city-ui-select-text">市</span>
+                        <select name="city">
+                            <option value="">市</option>
+                        </select>
+                    </div>
+                    <div class="ui-select">
+                        <span class="js-text city-ui-select-text">区</span>
+                        <select name="district">
+                            <option value="">区</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-line js-form-group">
+				<label class="control-label" for="">详细地址</label>
+                <div class="form-content">
+    	            <input type="text" name="address" placeholder="输入详细地址" maxlength="50" value="$!address">
+    	        </div>
+			</div>
+        </div>
+        <div class="form-title-line">
+            <label>常用联系人</label>
+        </div>
+		<div class="form-panel no-margin-top">
+            <div class="panel-line js-form-group">
+                <div class="select-label">
+                    <div class="ui-select select-border-right">
+                        <span class="js-text">
+                          选择关系
+                        </span>
+                        <select name="emergencyContactType">
+                            <option value="">选择关系</option>
+							<option value="2">夫妻</option>
+                            <option value="3">子女</option>
+                            <option value="4">朋友</option>
+                            <option value="5">同事</option>
+                        </select>
+                    </div>
+                </div>
+	            <div class="form-content">
+                    <input type="text" name="emergencyContact" placeholder="输入联系人姓名" maxlength="20" value="$!emergencyContact">
+	            </div>
+			</div>
+            <div class="panel-line js-form-group">
+				<label class="control-label" for="">手机号码</label>
+    	        <div class="form-content">
+    	            <input type="tel" name="emergencyContactPhone" placeholder="输入手机号码" value="$!emergencyContactPhone" maxlength="11">
+    	        </div>
+			</div>
+            <div class="panel-line js-form-group">
+                <div class="select-label">
+                    <div class="ui-select select-border-right">
+                        <span class="js-text">
+                          选择关系
+                        </span>
+                        <select name="secondContactType">
+                            <option value="">选择关系</option>
+							<option value="6">父亲</option>
+							<option value="7">母亲</option>
+							<option value="8">兄弟姐妹</option>
+                        </select>
+                    </div>
+                </div>
+	            <div class="form-content">
+                    <input type="text" name="secondContact" placeholder="输入联系人姓名" maxlength="20" value="$!secondContact">
+	            </div>
+			</div>
+            <div class="panel-line js-form-group border-bottom">
+				<label class="control-label" for="">手机号码</label>
+    	        <div class="form-content">
+    	            <input type="tel" name="secondContactPhone" placeholder="输入手机号码" value="$!secondContactPhone" maxlength="11">
+    	        </div>
+			</div>
+		</div>
+
+		<div class="error-box js-error-box"></div>
+		<div class="btn-wrap2">
+			<button type="submit" class="btn-submit js-submit-button">提交</button>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	function getValue(value) {
+			if (value == 0) {
+					return '';
+			}
+			return value;
+	}
+	var globalData = {
+		"emergencyContactType":getValue("$!emergencyContactType"),
+		"secondContactType":getValue("$!secondContactType"),
+		"marriageStatus":getValue("$!marriageStatus"),
+		"eduStatus":getValue("$!eduStatus"),
+        "industry":getValue("$!industry"),
+		"city":'$!city',
+        "companyCity":'$!companyCity',
+        "monthIncome":'$!monthIncome'
+	}
+    var BASEDATA = {
+        title:'$!title'
+    }
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/info/personal.js"></script>
+#end
+#end

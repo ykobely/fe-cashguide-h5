@@ -1,0 +1,102 @@
+#set($title = '支付')
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/repayment-pay.scss">
+#end
+
+#block('body')
+<!-- #parse("../pages/common/_header.vm") -->
+<div class="pay-panel js-pay-fast">
+	<div class="panel-h">
+		<p class="des hidden js-single-show">第$!{phasePayInfo.currentPeriod}期应还金额</p>
+		<p class="des hidden js-merge-show">当前应还总额</p>
+		<div class="main">
+			<span class="amount">¥$!{phasePayInfo.payAmount}</span>
+			<span class="sub">含滞纳金$!{phasePayInfo.overdueFee}元</span>
+		</div>
+	</div>
+	<div class="panel-box">
+		<form action="" class="pay-form" method="post">
+			<input type="hidden" name="token" />
+			<div class="box-h">支付验证</div>
+			<div class="box-content">
+				<div class="panel-line js-form-group">
+					<label class="form-label">银行</label>
+					<div class="form-content js-select-bank">
+						<!-- <select name="bankName" class="form-select">
+							<option value="">请选择</option>
+							#foreach($item in $!{userBankInfo.banks})
+		                        <option value="$item.bankName">$item.bankName</option>
+	                        #end
+						</select> -->
+						<div class="form-select">
+							<span class="ui-placeholder js-show-bankName">请选择</span>
+							<input type="hidden" name="bankName">
+						</div>
+						<div class="icon-angle-right down"></div>
+					</div>
+		            <div class="error-message js-error-message">
+		                <span class="js-error-message-text"></span>
+		            </div>
+				</div>
+				<div class="panel-line js-form-group">
+					<label class="form-label">银行卡号</label>
+					<div class="form-content">
+						<input type="text" name="bankCardNo" placeholder="请输入银行卡号" value="$!{userBankInfo.bankCardNo}" onkeyup="this.value=this.value.replace(/\D/g,'').replace(/....(?!$)/g,'$& ')">
+					</div>
+		            <div class="error-message js-error-message">
+		                <span class="js-error-message-text"></span>
+		            </div>
+				</div>
+				<div class="panel-line js-form-group">
+					<label class="form-label">手机号</label>
+					<div class="form-content">
+						<input type="text" name="mobile" id="mobile" placeholder="请输入手机号" maxlength="11" value="$!{phasePayInfo.mobile}">
+					</div>
+		            <div class="error-message js-error-message">
+		                <span class="js-error-message-text"></span>
+		            </div>
+				</div>
+				<div class="panel-line js-form-group">
+					<label class="form-label">验证码</label>
+					<div class="form-content">
+						<input type="number" name="validCode" placeholder="请输入验证码">
+						<button type="button" class="btn-code js-captcha-btn" data-phone-target="#mobile">免费获取</button>
+					</div>
+		            <div class="error-message js-error-message">
+		                <span class="js-error-message-text"></span>
+		            </div>
+				</div>
+			</div>
+			<div class="btn-wrap">
+				<button type="submit" class="btn-submit js-submit-button">确认支付</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+#parse("../pages/repayment/bank-block.vm")
+
+<script type="text/javascript">
+	var BASEDATA = {
+		title:'$!title'
+	};
+	var globalData = {
+		currentPeriod:'$!{phasePayInfo.currentPeriod}',
+		payAmount:'$!{phasePayInfo.payAmount}',
+		userId:'$!{userBankInfo.userId}',
+		realName:'$!{phasePayInfo.realName}',
+		bankName:'$!{userBankInfo.bankName}',
+		payChannel : "$!{userBankInfo.payChannel}",
+		bankCardNo : "$!{userBankInfo.bankCardNo}",
+		mobile:'$!{phasePayInfo.mobile}',
+		banks:$!banks
+	};
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/repayment/pay-fast.js"></script>
+#end
+
+#end

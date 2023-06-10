@@ -1,0 +1,60 @@
+#set($title = "借款结果")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/audit.scss">
+#end
+
+#block('body')
+<div class="panel">
+    <!-- 正在获取风控结果 -->
+    <div class="loading-box js-loading-box" >
+        <img src="/static/images/loading.gif" alt="">
+        <div class="des">
+            <p class="status">借款申请审核中</p>
+            <p class="timer js-timer-wrap">
+                <span class="js-timer">10</span>S
+            </p>
+            <p class="small js-clear-time-show hidden">稍后将以短信通知您审核结果</p>
+        </div>
+    </div>
+    <!-- 风控结果 -->
+    <div class="audit-box hidden">
+        <div class="box-body fun">
+            <div class="icon wallet js-status-icon"></div>
+            <div class="status-wrap">
+                <h1 class="js-status-text"></h1>
+                <p class="money js-money-wrap hidden"></p>
+                <p class="des js-date-wrap"></p>
+            </div>
+            <div class="btn-wrap flexbox fund">
+                <a href="javascript:;" class="btn js-ok-btn js-single-btn">返回</a>
+                <div class="hide btns js-wallet-btns">
+                    <a href="javascript:;" class="btn js-ok-btn">返回首页</a>
+                    <a href="javascript:;" class="btn btn-forward">前往钱包</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer loading js-loading-box ">
+    <p class="tip">请不要关闭本页面</p>
+</div>
+
+<div class="footer hidden js-pass-footer">
+    <h2><span>温馨提示</span></h2>
+    <p class="des js-footer-text"></p>
+</div>
+
+
+<script type="text/javascript">
+    var BASEDATA = {
+        title:'$!title'
+    };
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/cash/result.js"></script>
+#end
+#end

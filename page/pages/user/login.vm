@@ -1,0 +1,57 @@
+#set($title = "信息验证")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/login.scss">
+#end
+
+#block('body')
+<div class="panel">
+	<div class="logo">
+		<img src="/static/images/logo-v2.png" alt="">
+	</div>
+	<form class="login-form">
+		<input type="hidden" name="openId">
+		<div class="box">
+			<div class="block-inline">
+				<i class="icon icon-phone"></i>
+				<div class="form-main">
+					<input type="tel" id="mobile" name="mobile" class="phone" placeholder="请输入手机号码" maxlength="11"/>
+					<a href="javascript:;" class="btn-remove" style="display: none;">
+						<i class="icon icon-remove"></i>
+					</a>
+				</div>
+			</div>
+			<div class="block-inline form-code-box" id="picCodeBox" style="display:none;">
+				<i class="icon icon-verifyimg"></i>
+				<div class="form-main">
+					<input type="text" placeholder="验证码" class="normal-input" name="picRandom" id="picRandom">
+					<div class="img-code">
+	                    <img src="/verify/verifyCode" id="img-code">
+	                </div>
+				</div>
+            </div>
+			<div class="block-inline">
+				<i class="icon icon-email"></i>
+				<div class="form-main">
+					<input type="text" name="smsCode" placeholder="请输入短信验证码" maxlength="6"/>
+					<a href="javascript:;" class="btn-code js-captcha"  data-phone-target="#mobile" data-picCode-target="#picRandom" data-text="获取验证码" data-type="9">获取验证码</a>
+				</div>
+			</div>
+		</div>
+		<div class="btn-wrap">
+			<button type="submit" class="btn js-submit-button">登录</button>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	var BASEDATA = {
+		title:'$!title'
+	};
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/user/login.js"></script>
+#end
+
+#end

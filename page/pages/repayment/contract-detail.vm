@@ -1,0 +1,72 @@
+#set($title = "合同详情")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/contract.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="main">
+    <div class="detail-panel">
+        <div class="panel-line">
+            <span class="fblack">合同号：</span>
+            <span class="fgray">$!contractNo</span>
+        </div>
+        <div class="panel-line">
+            <span class="fblack">合同状态：</span>
+            <span class="fgray">$!contractStatusText</span>
+        </div>
+        <div class="panel-line">
+            <span class="fblack">申请人姓名：</span>
+            <span class="fgray">$!applyName</span>
+        </div>
+        <div class="panel-line">
+            <span class="fblack">申请时间：</span>
+            <span class="fgray">$!applyTime</span>
+        </div>
+        <div class="panel-line">
+            <span class="fblack">申请金额：</span>
+            <span class="fgray">$!loanPricipal元</span>
+        </div>
+        <div class="panel-line">
+            <span class="fblack">收款银行：</span>
+            <span class="fgray">$!bankName</span>
+        </div>
+        <div class="panel-line">
+            <span class="fblack">银行卡号：</span>
+            <span class="fgray js-bankCardNo">$!bankCardNo</span>
+        </div>
+        <div class="panel-line">
+            <span class="fblack">每月还款日：</span>
+            <span class="fgray">$!monthly日</span>
+        </div>
+    </div>
+    <div class="detail-panel">
+        <div class="panel-line">
+            <span class="fblack">当前应还(元)</span>
+            <a href="/payment/order/loanTracks?contractNo=$!contractNo" class="fblue">查看往期还款<i class="re-arrow"></i></a>
+        </div>
+        <div class="money #if($!contractStatus == 5 || $!contractStatus == 6)red#end">$!currentAmount</div>
+        <div class="state">当前应还为截止到现在所有应还总金额，点击立即还款可以立即支付，点击查看往期还款可查看还款记录</div>
+        <div class="btn-wrap">
+            #if($!currentAmount != 0)
+            <a href="/payment/order/loanTracks?contractNo=$!contractNo" class="btn #if($!contractStatus == 5 || $!contractStatus == 6)red#end">立即还款</a>
+            #end
+        </div>
+
+    </div>
+</div>
+
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/common/common.js"></script>
+<script>
+    $(function(){
+        var bankCardNo = '$!bankCardNo'.replace(/([\d|\*]{4})(?=[\d|\*])/g,"$1"+" ");
+        $('.js-bankCardNo').html(bankCardNo);
+    })
+</script>
+
+#end
+#end

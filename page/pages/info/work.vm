@@ -1,0 +1,131 @@
+#set($title = "工作信息")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/info.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="main">
+    #parse("../pages/info/_progress.vm")
+	<form action="" class="work-form" method="post">
+        <div class="form-panel no-margin-top">
+            <div class="panel-line js-form-group">
+				<label class="control-label" for="">月收入</label>
+                <div class="form-content">
+    	            <input type="tel" name="monthIncome" placeholder="请输入个人月收入" value="$!monthIncome" maxlength="5">
+    	        </div>
+			</div>
+            <div class="panel-line js-form-group">
+				<label class="control-label" for="">公司名称</label>
+                <div class="form-content">
+    	            <input type="text" name="companyName" placeholder="请输入公司名称" value="$!companyName" maxlength="50">
+    	        </div>
+			</div>
+            <div class="panel-line js-form-group border-bottom">
+				<label class="control-label" for="">公司行业</label>
+    	        <div class="form-content">
+    	            <div class="ui-select">
+                        <span class="js-text">
+                          请选择
+                        </span>
+                        <select name="industry">
+                            <option value="">请选择</option>
+                            <option value="1">餐饮、酒店、旅游、美容美发保健</option>
+                            <option value="2">农业、林业、畜牧业和渔业</option>
+                            <option value="3">建筑、装修</option>
+                            <option value="4">文化、运动、娱乐、传媒、广告设计</option>
+                            <option value="5">教育</option>
+                            <option value="6">金融机构、专业性事务机构</option>
+                            <option value="7">政府机构、社会团体</option>
+                            <option value="8">计算机、通信、通讯</option>
+                            <option value="9">制造、快速消费品、耐用消费品</option>
+                            <option value="10">军队</option>
+                            <option value="11">能源/化工/矿产</option>
+                            <option value="12">电力、煤气和水的生产和供应</option>
+                            <option value="13">房地产</option>
+                            <option value="14">个体、自营、退休、居住、家政和其他服务</option>
+                            <option value="15">科研、技术服务和地质勘探</option>
+                            <option value="16">事业单位、公共设施、医疗卫生、社会保障</option>
+                            <option value="17">租赁和商业服务</option>
+                            <option value="18">批发和零售贸易</option>
+                            <option value="19">其他</option>
+                        </select>
+                    </div>
+    	        </div>
+			</div>
+            <div class="panel-line js-form-group">
+                <label class="control-label" for="">公司地址</label>
+                <div class="form-content select-box">
+                    <div class="ui-select">
+                        <span class="js-text city-ui-select-text">省</span>
+                        <select name="province1">
+                            <option value="">省</option>
+                        </select>
+                    </div>
+                    <div class="ui-select">
+                        <span class="js-text city-ui-select-text">市</span>
+                        <select name="city1">
+                            <option value="">市</option>
+                        </select>
+                    </div>
+                    <div class="ui-select">
+                        <span class="js-text city-ui-select-text">区</span>
+                        <select name="district1">
+                            <option value="">区</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-line js-form-group">
+				<label class="control-label" for="">详细地址</label>
+                <div class="form-content">
+    	            <input type="text" name="companyAddress" placeholder="输入详细地址" maxlength="50" value="$!companyAddress">
+    	        </div>
+			</div>
+            <div class="panel-line js-form-group">
+                <label class="control-label" for="">工作电话</label>
+                <div class="form-content landline-telephone">
+                    <input type="tel" placeholder="区号" id="area_code" name="officePhoneArea" maxlength="4"
+                           value="$!officePhoneArea">
+                    <span>-</span>
+                    <input type="tel" placeholder="固定电话" id="telephone" name="officePhone" maxlength="8"
+                           value="$!officePhone">
+                </div>
+            </div>
+		</div>
+        <p class="form-tips">如公司联系方式为手机号，可在手机号前方加0后输入，如0136-12345678</p>
+		<div class="error-box js-error-box"></div>
+		<div class="btn-wrap2">
+			<button type="submit" class="btn-submit js-submit-button">提交</button>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	function getValue(value) {
+			if (value == 0) {
+					return '';
+			}
+			return value;
+	}
+	var globalData = {
+		"emergencyContactType":getValue("$!emergencyContactType"),
+		"secondContactType":getValue("$!secondContactType"),
+		"marriageStatus":getValue("$!marriageStatus"),
+		"eduStatus":getValue("$!eduStatus"),
+        "industry":getValue("$!industry"),
+		"city":'$!city',
+        "companyCity":'$!companyCity',
+        "monthIncome":'$!monthIncome'
+    }
+    var BASEDATA = {
+        title:'$!title'
+    }
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/info/work.js"></script>
+#end
+#end

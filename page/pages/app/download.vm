@@ -1,0 +1,31 @@
+#set($title='小贷鱼')
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/download.scss">
+#end
+
+#block('body')
+<!-- #parse("../pages/common/_header.vm") -->
+<div class="logo">
+    <img src="/static/images/logo3.png" alt="">
+</div>
+<div class="container">
+    <div class="content">
+        <h2>你的额度已审批</h2>
+        <h1>下载<span>“有用折扣”</span>领取</h1>
+        <h3>一键取现攻略</h3>
+        <ul class="step">
+            <li><span class="order">1.</span>打开<span class="yellow">“有用折扣”app</span></li>
+            <li><span class="order">2.</span>点击底部栏<span class="yellow">-取现金</span></li>
+            <li><span class="order">3.</span>输入您的<span class="yellow">手机号码登录</span></li>
+            <li><span class="order">4.</span>点击<span class="yellow">立即取现</span>即可领取额度</li>
+        </ul>
+    </div>
+    <a href="$!url" class="btn js-download-btn">立即下载</a>
+</div>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/app/download.js"></script>
+#end
+#end

@@ -1,0 +1,253 @@
+{
+    "cashLoanInfoDto": {
+        "pdlLoanHtmlSwitch":1,
+        "availableQuota": 5400,
+        "bankCardNo": "1227121212211212111",
+        "bankMobile":"13012341234",
+        "bankLogoUrl": "http://image.yyfq.com/banklogo/js.png",
+        "bankName": "农业银行",
+        "userCouponList": [
+            {
+                "channelCode": "105",
+                "comment": "减免部分费用，具体以展示为准",
+                "creatTime": "2018-08-10 15:06:55",
+                "desc": "5天内有效，取10000元最高优惠50元",
+                "endDate": "20180821",
+                "name": "VIP限时免息券",
+                "protossKey": "SERRATE_DISCOUNT_NPER_BEGIN",
+                "rate": "0.08",
+                "serialNo": "11320",
+                "startDate": "20180803",
+                "status": "N",
+                "term": 2,
+                "type": "R",
+                "updateTime": "2018-08-10 15:06:57",
+                "userId": 1533535798015
+            },
+            {
+                "channelCode": "105",
+                "comment": "免息",
+                "creatTime": "2018-08-09 10:18:50",
+                "desc": "所有期数按比例免息",
+                "endDate": "20180821",
+                "name": "所有期数按比例免息",
+                "protossKey": "RATE_DISCOUNT_PERCENT",
+                "rate": "0.3",
+                "serialNo": "1134567",
+                "startDate": "20180803",
+                "status": "N",
+                "term": 1,
+                "type": "R",
+                "updateTime": "2018-08-09 10:18:52",
+                "userId": 1533535798015
+            }
+        ],
+        "existMarketLeader": false,
+        "idCardExpiry": "20110809-20210809",
+        "idCardExpiryStrategy": "MUST",
+        "lowestLoanMoney": 3000,
+        "marketPlanCode": "MP-CCL0001",
+        "repaymentInfoDtoList": [
+            {
+                "businessChannel": 104,
+                "marketPlanCode": "MP-CCL0001",
+                "availableQuota":4000,
+                "repayPlanViewDtoList": [
+                    {
+                        "borrowingDays":null,
+                        "eachRepayMoney": 545,
+                        "firstRepayDay": "12月24日",
+                        "nper": 12,
+                        "realPrincipal": 4500,
+                        "vipServiceMoney": 1.5,
+                        "repayPlanDetailViewDtoList": [
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 1,
+                                "repayDay": "2017.12.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 2,
+                                "repayDay": "2018.01.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 3,
+                                "repayDay": "2018.02.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 4,
+                                "repayDay": "2018.03.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 5,
+                                "repayDay": "2018.04.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 6,
+                                "repayDay": "2018.05.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 7,
+                                "repayDay": "2018.06.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 8,
+                                "repayDay": "2018.07.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 9,
+                                "repayDay": "2018.08.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 10,
+                                "repayDay": "2018.09.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 11,
+                                "repayDay": "2018.10.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 12,
+                                "repayDay": "2018.11.24"
+                            }
+                        ],
+                        "skuCode": "CCL2017040004-013",
+                        "skuVersion": "0"
+                    }
+                ]
+            },
+            {
+                "businessChannel": 105,
+                "marketPlanCode": "MP-CCL0002",
+                "availableQuota":5000,
+                "repayPlanViewDtoList": [
+                    {
+                        "eachRepayMoney": 545,
+                        "firstRepayDay": "12月24日",
+                        "nper": 3,
+                        "realPrincipal": 4500,
+                        "vipServiceMoney": 10,
+                        "repayPlanDetailViewDtoList": [
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 1,
+                                "repayDay": "2017.12.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 2,
+                                "repayDay": "2018.01.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 3,
+                                "repayDay": "2018.02.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 4,
+                                "repayDay": "2018.03.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 5,
+                                "repayDay": "2018.04.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 6,
+                                "repayDay": "2018.05.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 7,
+                                "repayDay": "2018.06.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 8,
+                                "repayDay": "2018.07.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 9,
+                                "repayDay": "2018.08.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 10,
+                                "repayDay": "2018.09.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 11,
+                                "repayDay": "2018.10.24"
+                            },
+                            {
+                                "existCoupon": false,
+                                "installmentAmount": 545,
+                                "installmentNo": 12,
+                                "repayDay": "2018.11.24"
+                            }
+                        ],
+                        "skuCode": "CCL2017040004-013",
+                        "skuVersion": "0"
+                    }
+                ]
+            }
+        ],
+        "supportReBuy": false,
+        "couponViewDtoList": [
+            {
+                "couponType": "R",
+                "couponName": "首单免息券",
+                "couponDesc": "说明: 使用时可以免除首单的利息",
+                "startDate": "2018.10.25",
+                "endDate": "2018.10.25",
+                "couponComment": "限商品贷激活日7天内使用"
+            },
+            {
+                "couponType": "D",
+                "couponName": "减免借款手续费",
+                "couponDesc": "说明: 使用时可以免除首单的利息",
+                "startDate": "2018.10.25",
+                "endDate": "2018.10.25",
+                "couponComment": "限商品贷激活日7天内使用"
+            }
+        ]
+    }
+}

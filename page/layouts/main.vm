@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>$!title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <link href="/static/images/favicon.ico" rel="icon" type="image/x-icon" />
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+        <meta http-equiv="Expires" content="0">
+        <style>
+            #cnzz_stat_icon_1273553814{
+                display: none;
+            }
+        </style>
+        #block('head_meta')#end
+        <!-- 统计代码 小贷鱼(cash.yyfq.com)  -->
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273553814'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273553814' type='text/javascript'%3E%3C/script%3E"));</script>
+        <!-- js代码异常监控   1.1.2版本-->
+        <!-- <script src="/static/scripts/report/debug.min.js" 
+                apikey="66d4bf2aa12ff097d8b34e22a3fd1f1ebce86084fd49289791e7013d1754f1c3"
+                silentVideo=true></script> -->
+    </head>
+    <body#block('body_attribute')#end>
+        #block('body')#end
+    </body>
+</html>

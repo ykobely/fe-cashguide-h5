@@ -1,0 +1,47 @@
+ <!-- 资金方开户结果 -->
+#set($title = "借款结果")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/audit.scss">
+#end
+
+#block('body')
+<div class="panel js-default-panel">
+    <div class="audit-box">
+        <div class="box-body fun">
+            <div class="icon wallet js-status-icon"></div>
+            <div class="status-wrap">
+                <h1 class="js-status-text"></h1>
+                <p class="des js-date-wrap"></p>
+                <p class="des js-extra-wrap"></p>
+            </div>
+            <div class="btn-wrap flexbox fund">
+                <a href="javascript:;" class="btn js-ok-btn js-single-btn">返回</a>
+                <div class="hide btns js-wallet-btns">
+                    <a href="javascript:;" class="btn js-ok-btn">返回首页</a>
+                    <a href="javascript:;" class="btn btn-forward">前往钱包</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer js-pass-footer">
+    <h2><span class="white">温馨提示</span></h2>
+    <p class="des js-footer-text"></p>
+</div>
+
+#parse('/page/pages/cash/_re_getplan.vm')
+#parse('/page/pages/cash/_real-question.vm')
+
+<script type="text/javascript">
+    var BASEDATA = {
+        title:'$!title'
+    };
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/cash/fund-result.js"></script>
+#end
+#end

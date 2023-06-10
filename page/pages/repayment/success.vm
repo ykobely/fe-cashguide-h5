@@ -1,0 +1,72 @@
+#set($title = '支付')
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/repayment-success.scss">
+#end
+
+#block('body')
+<!-- #parse("../pages/common/_header.vm") -->
+<div class="panel panel-loading" id="loadingPanel">
+	<div class="loading-wrap">
+		<div class="loading"></div>
+		<div class="des" id="loading">
+			<h3>系统正在查询支付结果</h3>
+			<p>请耐心等待～</p>
+		</div>
+		<div class="des hidden js-fail3-show">
+			<p class="text-left">系统正在查询上一笔支付操作的支付结果，支付成功后会有短信通知</p>
+		</div>
+		<div class="btn-wrap hidden js-fail3-show">
+			<button type="submit" class="btn-submit btn-primary js-back-btn">返回</button>
+		</div>
+	</div>
+</div>
+<div class="panel hidden" id="failPanel">
+	<div class="fail-wrap">
+		<div class="fail-icon"></div>
+		<div class="des">
+			<h3>暂未收到支付结果</h3>
+			<p>请稍后查看支付结果，支付成功后会有短信通知</p>
+		</div>
+		<div class="btn-wrap">
+			<button type="submit" class="btn-submit btn-primary js-back-btn">返回</button>
+		</div>
+	</div>
+</div>
+<div class="suc-panel hidden " id="successPanel">
+	<div class="suc-box">
+		<div class="box-content">
+			<p class="pay-state">
+				<img src="/static/images/radio-checked.png">
+				<span>支付成功</span>
+			</p>
+			<p class="pay-des">
+				已成功支付<span id="payAmount"></span>元。
+			</p>
+			<div class="user-info">
+				<p>用户姓名：<span id="realName"></span></p>
+				<p>合同编号：<span id="contractNo"></span></p>
+				<p>手机号码：<span id="mobile"></span></p>
+			</div>
+		</div>
+	</div>
+	<div class="btn-wrap">
+		<!-- <p>温馨提示：</p>
+		<p></p> -->
+		<button type="submit" class="btn-submit btn-primary js-back-btn">返回</button>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var BASEDATA = {
+		title:'$!title'
+	};
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/repayment/success.js"></script>
+
+#end
+
+#end

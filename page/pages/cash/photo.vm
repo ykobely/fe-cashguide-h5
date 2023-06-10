@@ -1,0 +1,97 @@
+#set($title = "身份信息")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/photo.scss">
+#end
+
+#block('body')
+<div class="panel">
+    <nav class="nav">
+        <i class="icon icon-warning"></i>
+        <span>确保照片完整，字迹清晰，更有利于审核通过哦～</span>
+    </nav>
+    <article class="photo-container">
+        <div class="line">
+            <section class="box">
+                <h2>点击拍摄身份证正面</h2>
+                <div class="upload-wrap js-photo-upload-wrap">
+                    <img src="/static/images/icon-idcardback.png" class="image icon-empty" alt="" />
+                    <img src="$!picIdfront" alt="" class="image js-imgUrl" style="display: none;" alt="身份证正面拍摄结果" />
+                    <input type="file" accept="image/*" class="icon-empty"/>
+                    <input type="hidden" class="js-url-input" name="picIdfront" value="$!picIdfront" />
+                    <input type="hidden" name="type" value="1" />
+                    <span class="photo-upload-progress-info">
+                        <span class="photo-upload-progress-info-icon">
+                            <span class="js-photo-info-text photo-info-18"></span>
+                            <span class="js-photo-info-text photo-info-24"></span>
+                        </span>
+                    </span>
+                </div>
+            </section>
+            <section class="separator"></section>
+            <section class="box">
+                <h2>点击拍摄身份证反面</h2>
+                <div class="upload-wrap js-photo-upload-wrap">
+                    <img src="/static/images/icon-idcardfront.png" class="image icon-empty" alt="" />
+                    <img src="$!picIdback" alt="" class="image js-imgUrl" style="display: none;" alt="身份证反面拍摄结果" />
+                    <input type="file" accept="image/*" class="icon-empty" />
+                    <input type="hidden" class="js-url-input" name="picIdback" value="$!picIdback" />
+                    <input type="hidden" name="type" value="2" />
+                    <span class="photo-upload-progress-info">
+                        <span class="photo-upload-progress-info-icon">
+                            <span class="js-photo-info-text photo-info-18"></span>
+                            <span class="js-photo-info-text photo-info-24"></span>
+                        </span>
+                    </span>
+                </div>
+            </section>
+        </div>
+        <div class="line">
+            <section class="box">
+                <h2>点击拍摄本人正面照</h2>
+                <div class="upload-wrap js-photo-upload-wrap">
+                    <img src="/static/images/icon-selfie.png" class="image icon-empty" alt="" />
+                    <img src="$!picCust" alt="" class="image js-imgUrl" style="display: none;" alt="本人照片拍摄结果" />
+                    <input type="file" accept="image/*" class="icon-empty" capture="camera" />
+                    <input type="hidden" class="js-url-input" name="picCust" value="$!picCust" />
+                    <input type="hidden" name="type" value="4" />
+                    <span class="photo-upload-progress-info">
+                        <span class="photo-upload-progress-info-icon">
+                            <span class="js-photo-info-text photo-info-18"></span>
+                            <span class="js-photo-info-text photo-info-24"></span>
+                        </span>
+                    </span>
+                </div>
+            </section>
+            <section class="separator"></section>
+            <section class="box"></section>
+        </div>
+    </article>
+    <div class="btn-wrap">
+        <button type="submit" class="btn-submit js-submit-button">下一步</button>
+    </div>
+</div>
+
+<div class="preview-dialog js-preview-photo" style="display: none;">
+    <nav class="title">身份证拍摄结果</nav>
+    <section class="photo">
+        <img class="js-photo-show" src="" alt="">
+    </section>
+    <footer>
+        <button class="btn primary js-recamera">重新拍摄</button>
+        <div class="separator"></div>
+        <button class="btn default js-close-btn">关闭预览</button>
+    </footer>
+</div>
+
+<script type="text/javascript">
+    var BASEDATA = {
+        title:'$!title'
+    };
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/cash/photo.js"></script>
+#end
+#end

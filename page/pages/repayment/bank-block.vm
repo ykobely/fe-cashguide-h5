@@ -1,0 +1,57 @@
+<div class="hidden js-bank-block">
+	<div class="pay-panel">
+		<div class="pay-box">
+			<div class="weui_search_bar" id="search_bar">
+			  	<form class="weui_search_outer" autocomplete="false">
+			    	<div class="weui_search_inner">
+			      		<i class="weui_icon_search"></i>
+			      		<input type="text" class="weui_search_input" id="search_input" placeholder="搜索" required/>
+			      		<a href="javascript:" class="weui_icon_clear" id="search_clear"></a>
+			    	</div>
+			    	<label for="search_input" class="weui_search_text" id="search_text">
+			      		<i class="weui_icon_search"></i>
+			      		<span>搜索</span>
+			    	</label>
+			  	</form>
+			  	<a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a>
+			</div>
+		</div>
+		<div class="panel-box js-bank-box">
+			
+		</div>
+	</div>
+
+	<div class="letters-box">
+		<ul class="js-letters-box" id="letters-box">
+			#set($letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'])
+			#foreach($item in $letters)
+			<li>$!item</li>
+			#end
+		</ul>
+	</div>
+
+	<div class="ui-square-wrap hidden js-show-letter">
+		A
+	</div>
+
+	<script type="text/html" id="classify-temp">
+		<div class="box-h js-classify"></div>
+	</script>
+
+	<script type="text/html" id="block-temp">
+		<div class="box-content banks-wrap">
+			
+		</div>
+	</script>
+
+	<script type="text/html" id="bank-temp">
+		<div class="banks-box js-bank-item">
+			<div class="bank-name js-bankName">
+
+			</div>
+			<div class="bank-select js-select "></div>
+		</div>
+	</script>
+
+</div>
+

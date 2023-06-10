@@ -1,0 +1,49 @@
+#set($title = '我')
+
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/user.scss">
+#end
+
+#block('body')
+<div class="my-panel">
+	<div class="panel-h">
+		<div class="user-head">
+			<img src="/static/images/user.png">
+		</div>
+		<ul class="user-ul">
+			<li class="username">$!username</li>
+			<li class="phone">$!phone</li>
+		</ul>
+	</div>
+	<div class="panel-body">
+		<ul class="columns-ul">
+			<li>
+				<a class="columns " href="/loan/view/orderList">
+					<aside class="side-l">
+						<img src="/static/images/icon-bankcard.png">
+					</aside>
+					<main class="main">取现记录</main>
+					<aside class="side-r"></aside>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="btn-wrap">
+		<a href="javascript:;" class="btn js-btn-logout">注销</a>
+	</div>
+</div>
+
+<!-- #parse("../pages/common/_nav.vm") -->
+<script type="text/javascript">
+	var BASEDATA = {
+		title:'$!title'
+	};
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/user/index.js"></script>
+#end
+
+#end

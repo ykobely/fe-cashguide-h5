@@ -1,0 +1,115 @@
+<!-- 搓配失败，使用另一个sku重新试算 -->
+<div class="other-sku-wrap js-otherSku-wrap" style="display: none;">
+    <header>
+        <h1>当前期数额度已用完</h1>
+        <h2>已为您选择其他贷款期数</h2>
+        <img class="img" src="/static/images/othersku-notavaliable.png" alt="">
+    </header>
+    <div class="container">
+        <div class="hook-wrap">
+            <div class="hook left">
+                <i class="icon-hook "></i>
+            </div>
+            <div class="hook right">
+                <i class="icon-hook "></i>
+            </div>
+        </div>
+        <div class="content">
+            <div class="tip">
+                <i class="icon"></i>
+                <span>为您选择借款期限：<span class="js-nper-item"></span>，最高可借金额是<span class="js-loanMoney-item"></span>元</span>
+            </div>
+            <div class="form-container">
+                <div class="line">
+                    <label for="">借多少</label>
+                    <div class="form-content deep js-loanMoney-item"></div>
+                </div>
+                <div class="line">
+                    <label for="">借多久</label>
+                    <div class="form-content js-nper-item"></div>
+                </div>
+                <div class="line">
+                    <label for="">实际到账</label>
+                    <div class="form-content" id="realPrincipal">
+                        <i class="icon-coupon" style="display: none;"></i>
+                        <span></span>
+                        <i class="icon-question js-agreement-dialog-button" data-target="agreement-dialog-real"></i>
+                    </div>
+                </div>
+                <div class="line">
+                    <label id="firstRepayDayLabel">还款时间</label>
+                    <div class="form-content">
+                        <span id="firstRepayDay"></span>
+                        <i class="icon-question js-firstRepayDay-question"></i>
+                    </div>
+                </div>
+                <div class="line">
+                    <label id="eachRepayMoneyLabel">应还金额</label>
+                    <div class="form-content">
+                        <i class="icon-coupon" style="display: none;"></i>
+                        <span class="prev">预计应还</span>
+                        <span id="eachRepayMoney"></span>
+                        <span class="text-btn js-eachRepay-btn" style="display: none;">详情</span>
+                    </div>
+                </div>
+                <div class="line" id="couponWrap" style="display: none;">
+                    <label for="">优惠券</label>
+                    <div class="form-content js-coupon-btn">
+                        <span class="coupon"></span>
+                    </div>
+                </div>
+                <div class="btn-wrap">
+                    <button class="btn js-submit-btn">点击一键借款</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border"></div>
+</div>
+
+<script type="text/html" id="sendDialog">
+    <div class="dialog-form">
+        <p class="label">
+            <span>验证码已发送到：</span>
+            <span class="focus" id="userMobile"></span>
+        </p>
+        <div class="form-inline disabled">
+            <div class="input"><input type="number" name="verificationCode" class="verify-code js-keypress" ></div>
+            <div class="middle js-middle">|</div>
+            <div class="btn"><button type="button" name="button" class="disabled js-captcha-btn" data-type="1"></button></div>
+        </div>
+    </div>
+</script>
+
+<div class="yyfq-modal-box js-plan-preview" style="display: none;">
+    <div class="preview-body">
+        <ul>
+            <li class="label">
+                <span>还款计划预览</span>
+                <i class="icon icon-close js-close-btn cursor"></i>
+            </li>
+            <li class="title js-plan-title">
+                <div>期数</div><div>还款日</div><div>应还金额</div>
+            </li>
+        </ul>
+        <ul class="js-wrap-ul">
+
+        </ul>
+    </div>
+</div>
+
+<div class="yyfq-modal-box js-coupon-preview" style="display: none;">
+    <div class="preview-body">
+        <ul>
+            <li class="label">
+                <span>我的优惠券</span>
+                <i class="icon icon-close js-close-btn cursor"></i>
+            </li>
+        </ul>
+        <div class="coupon js-coupon-list">
+            
+        </div>
+    </div>
+</div>
+
+

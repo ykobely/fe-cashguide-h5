@@ -1,0 +1,34 @@
+<!-- 授信结果页 -->
+#set($title = "跳转中")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/audit.scss">
+#end
+
+#block('body')
+<div class="panel">
+    <!-- 授权结果提交 -->
+    <div class="loading-box js-loading-box" >
+        <img src="/static/images/loading.gif" alt="">
+        <div class="des">
+            <p class="status">提交成功</p>
+            <p class="small js-clear-time-show">正在跳转页面，请稍等</p>
+            <p class="timer js-timer-wrap">
+                <span class="js-timer">10</span>S
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var BASEDATA = {
+        title:'$!title'
+    };
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/credit/result.js"></script>
+#end
+#end

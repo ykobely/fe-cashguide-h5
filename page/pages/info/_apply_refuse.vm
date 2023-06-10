@@ -1,0 +1,16 @@
+<!-- 拒绝模块 -->
+<div class="icon icon-case-refuse"></div>
+<div class="status-wrap">
+    <h1 class="js-status-text">被拒绝</h1>
+    <p class="des">您的审核已被拒绝，过段时间再来吧~</p>
+</div>
+<div class="btn-wrap flexbox">
+    <!-- <a href="/loan/loanmarket/list" class="btn auto" target="_blank">更多贷款，免费申请 > </a> -->
+    <a href="$!url" class="btn auto js-loanmarket-btn" target="_blank">更多贷款，免费申请 > </a>
+</div>
+#if($!unFreezeDate && $!unFreezeDate != '')
+<footer class="footer">
+    <h2><span>温馨提示</span></h2>
+    <p class="des">借款资格将于<span class="point">$!unFreezeDate</span>恢复；请继续关注小贷鱼，借款资格恢复后将短信通知您</p>
+</footer>
+#end

@@ -1,0 +1,53 @@
+#set($title='贷款专区')
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/loanmore.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="panel">
+    <div class="notice">
+        <i class="icon icon-trumpet"></i>
+        <span class="text">一次性申请多家，成功率更高哦～</span>
+    </div>
+    <div class="container">
+        #foreach($item in $!loanMarketItemList)
+            <section class="item" data-url="$!item.url">
+                <div class="left">
+                    <img class="icon" src="$item.logo" alt="">
+                    <p class="text">$!item.loanBrand</p>
+                </div>
+                <div class="content">
+                    <h2>
+                        <span>$!item.title</span>
+                        <i class="icon icon-$!{item.sort}"></i>
+                    </h2>
+                    <div class="flex-column">
+                        <div class="">
+                            <span class="fix">可贷金额</span>
+                            <span class="focus">$!item.usableAmount</span>
+                        </div>
+                        <div class="">
+                            <span class="fix text-right">$!{item.initApplies}人已申请</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        #end
+    </div>
+</div>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/common/common.js"></script>
+<script>
+    $(function(){
+        // 跳转
+        $(document).on('click','section.item',function(){
+            window.location.href = $(this).attr('data-url');
+        });
+    });
+</script>
+#end
+#end

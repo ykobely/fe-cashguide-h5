@@ -1,0 +1,142 @@
+#set($title = "身份证照片")
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/info.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="main">
+#parse("../pages/info/_progress.vm")
+<form class="identity-form" action="" method="post">
+    <div class="photo-form-panel2 idcard-picture">
+        <div class="photo-box">
+            <div class="photo-upload">
+                <div class="photo-upload-cursor js-photo-upload-wrap">
+                    <img src="$!picIdfront" class="js-imgUrl" alt="" style="display:none;">
+                    <a class="close-btn js-close-btn" href="javascript:void(0)" style="display:none;"></a>
+                    <span class="icon icon-photo-take-button"></span>
+                    <span class="text text-phone-take-button">点击拍摄身份证正面</span>
+                    <input type="hidden" name="type" value="1">
+                    <input type="hidden" class="js-url-input" name="picIdfront" value="$!picIdfront">
+                    <input
+                        type="file"
+                        name="file"
+                        accept="image/*"
+                        class="photo-upload-input"
+                        data-type="7">
+                    <span class="photo-upload-progress-info">
+                        <span class="photo-upload-progress-info-icon">
+                            <span class="js-photo-info-text photo-info-18"></span>
+                            <span class="js-photo-info-text photo-info-24"></span>
+                        </span>
+                    </span>
+                    <iframe name="iframe-input-7" style="display:none;"></iframe>
+                </div>
+            </div>
+            <div class="photo-upload">
+                <div class="photo-upload-cursor js-photo-upload-wrap">
+                    <img src="$!picIdback" class="js-imgUrl" alt="" style="display:none;">
+                    <a class="close-btn js-close-btn" href="javascript:void(0)" style="display:none;"></a>
+                    <span class="icon icon-photo-take-button"></span>
+                    <span class="text text-phone-take-button">点击拍摄身份证反面</span>
+                    <input type="hidden" name="type" value="2">
+                    <input type="hidden" class="js-url-input" name="picIdback" value="$!picIdback">
+                    <input
+                        type="file"
+                        name="file"
+                        accept="image/*"
+                        class="photo-upload-input"
+                        data-type="7">
+                    <span class="photo-upload-progress-info">
+                        <span class="photo-upload-progress-info-icon">
+                            <span class="js-photo-info-text photo-info-18"></span>
+                            <span class="js-photo-info-text photo-info-24"></span>
+                        </span>
+                    </span>
+                    <iframe name="iframe-input-7" style="display:none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-panel no-margin-top idCard-form">
+        <div class="panel-line js-form-group">
+            <label class="control-label" for="">姓名</label>
+            <div class="form-content">
+                <input type="text" name="username" placeholder="请输入姓名" value="$!username">
+            </div>
+        </div>
+        <div class="panel-line js-form-group">
+            <label class="control-label" for="">身份证号</label>
+            <div class="form-content">
+                <input type="text" name="idCardNo" placeholder="请输入身份证号" value="$!idCardNo" maxlength="18">
+            </div>
+        </div>
+        <div class="panel-line js-form-group">
+            <label class="control-label" for="">有效期</label>
+            <div class="form-content multiple">
+                <div class="calendars-box">
+                    <input type="text" name="date1" class="input-calendars" readonly
+                            placeholder="请选择" value="" id="idCardDateStart"/>
+                    <i></i>
+                </div>
+                <div class="calendars-box middle">-</div>
+                <div class="calendars-box">
+                    <input type="text" name="date2" class="input-calendars" readonly
+                            placeholder="请选择" value="" id="idCardDateEnd"/>
+                    <i></i>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="term" class="ui-checkbox" id="term">
+                    <label for="term"></label>
+                    <span>长期</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="photo-form-panel2 idcard-picture personal">
+        <div class="photo-box">
+            <div class="photo-upload">
+                <div class="photo-upload-cursor js-photo-upload-wrap">
+                    <img src="$!picCust" class="js-imgUrl" alt="" style="display:none;">
+                    <a class="close-btn js-close-btn" href="javascript:void(0)" style="display:none;"></a>
+                    <span class="icon icon-photo-take-button"></span>
+                    <span class="text text-phone-take-button">点击拍摄本人正面照</span>
+                    <input type="hidden" name="type" value="4">
+                    <input type="hidden" class="js-url-input" name="picCust" value="$!picCust">
+                    <input
+                        type="file"
+                        name="file"
+                        accept="image/*"
+                        class="photo-upload-input"
+                        data-type="7">
+                    <span class="photo-upload-progress-info">
+                        <span class="photo-upload-progress-info-icon">
+                            <span class="js-photo-info-text photo-info-18"></span>
+                            <span class="js-photo-info-text photo-info-24"></span>
+                        </span>
+                    </span>
+                    <iframe name="iframe-input-7" style="display:none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="error-box js-error-box"></div>
+    <div class="btn-wrap2">
+        <button type="submit" class="btn-submit js-submit-button">下一步</button>
+    </div>
+</form>
+</div>
+<script>
+    var globalData = {
+        idCardExpiry:'$!idCardExpiry'
+    };
+    var BASEDATA = {
+        title:'$!title'
+    }
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/info/identity.js"></script>
+#end
+#end

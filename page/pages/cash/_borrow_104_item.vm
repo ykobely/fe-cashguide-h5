@@ -1,0 +1,26 @@
+<!-- 104 温馨提示 -->
+<div class="hide" id="businessChannel104Item">
+    <div class="business104ItemWrap">
+        <p class="tip">因银行需要，会在放款时先扣除借款手续费</p>
+        <div class="form">
+            <div class="item">
+                <label for="">实际到账金额：</label>
+                <div class="content new-realPrincipal"></div>
+            </div>
+            <div class="item">
+                <label for="">还款时间：</label>
+                <div class="content firstRepayDay"></div>
+            </div>
+            <div class="item">
+                <label for="">预计应还金额：</label>
+                <div class="content">
+                    <span class="eachRepayMoney"></span>
+                </div>
+            </div>
+            <div class="item">
+                <label for="">银行卡号：</label>
+                <div class="content newBusiness104BankCode"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,143 @@
+#set($title = '申请额度')
+#set($availableQuota = $!availableQuota)
+#if(!$!availableQuota)
+    #set($availableQuota = 0)
+#end
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/apply.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<!-- <div class="weui-pull-to-refresh-layer">
+    <div class="pull-to-refresh-arrow"></div>
+    <div class="pull-to-refresh-preloader"></div>
+    <div class="down">下拉刷新</div>
+    <div class="up">释放刷新</div>
+    <div class="refresh">正在刷新...</div>
+</div> -->
+#if($!accountStatus == -1)
+    #if($!applyStatus == -1)
+        <div class="panel2">
+            <div class="money-wrap">
+                <p class="sub1">预计可取额度(元）</p>
+                <p class="money">10<span class="commas">，</span>000</p>
+                <p class="sub2"><span class="opa">1000元借1天利息仅为</span><span class="weight">0.27元</p>
+            </div>
+            <div class="container">
+                <img src="/static/images/icon-goldcoin.png" alt="" class="abs-img icon-goldicon">
+                <img src="/static/images/icon-safe.png" alt="" class="abs-img icon-safe">
+                <img src="/static/images/icon-profession.png" alt="" class="abs-img icon-profession">
+                <img src="/static/images/icon-people1.png" alt="" class="abs-img icon-people1">
+                <img src="/static/images/icon-people2.png" alt="" class="abs-img icon-people2">
+                <div class="wrap-btn">
+                    <a class="btn weight" href="/user/personalInfo" target="_blank">立即领取额度</a>
+                </div>
+            </div>
+        </div>
+    #elseif($!applyStatus == 20)
+        ## 审核通过
+        #parse('../pages/info/_apply_loan.vm')
+    #else
+        <div class="audit-box">
+            <div class="box-body">
+                #if($!applyStatus == 0)
+                    <div class="icon icon-case-submit"></div>
+                    <div class="status-wrap">
+                        <h1 class="js-status-text">已提交</h1>
+                        <p class="des">您的申请已成功提交，请稍后刷新</p>
+                    </div>
+                    <div class="btn-wrap flexbox">
+                        <a href="javascript:;" class="btn js-refresh-btn">刷新</a>
+                    </div>
+                #elseif($!applyStatus == 10)
+                    <div class="icon icon-case-audit"></div>
+                    <div class="status-wrap">
+                        <h1 class="js-status-text">审核中</h1>
+                        <p class="des">您的申请正在审核中，请稍后刷新</p>
+                    </div>
+                    <div class="btn-wrap flexbox">
+                        <a href="javascript:;" class="btn js-refresh-btn">刷新</a>
+                    </div>
+                #elseif($!applyStatus == 30)
+                    #parse('../pages/info/_apply_refuse.vm')
+                #elseif($!applyStatus == 40)
+                    <div class="icon icon-case-cancel"></div>
+                    <div class="status-wrap">
+                        <h1 class="js-status-text">被退回</h1>
+                        <dl class="des des-dl">
+                            <dt>退回原因：</dt>
+                            <dd class="result">$!cancelReason</dd>
+                        </dl>
+                    </div>
+                    <div class="btn-wrap flexbox">
+                        <a href="/user/personalInfo" target="_blank" class="btn">重新申请</a>
+                    </div>
+                #elseif($!applyStatus == 50)
+                    <div class="icon icon-case-refuse"></div>
+                    <div class="status-wrap">
+                        <h1 class="js-status-text">提单失败</h1>
+                        <p class="des">提交失败，请重新申请</p>
+                    </div>
+                    <div class="btn-wrap flexbox">
+                        <a href="/user/personalInfo" target="_blank" class="btn">重新申请</a>
+                    </div>
+                #elseif($!applyStatus == 60)
+                    <!-- 风控撤销 -->
+                    <div class="icon icon-audit-cancel"></div>
+                    <div class="status-wrap">
+                        <h1 class="js-status-text">申请被取消</h1>
+                        <p class="des">您的借款申请被取消</p>
+                    </div>
+                    <div class="btn-wrap flexbox">
+                        <a href="/user/personalInfo" target="_blank" class="btn">重新申请</a>
+                    </div>
+                #end
+            </div>
+        </div>
+    #end
+#elseif($!accountStatus == 1) 
+    #if($!applyStatus == 30)
+    <div class="audit-box">
+        <div class="box-body">
+            #parse('../pages/info/_apply_refuse.vm')
+        </div>
+    </div>
+    #else
+        #parse('../pages/info/_apply_loan.vm')
+    #end
+## #elseif($!accountStatus == 0) 
+#else
+    #set($title="小贷鱼")
+    <div class="unavailable-box">
+        <img src="/static/images/icon-system-error.png" >
+        <div class="des">
+            <h2>暂无取现额度</h2>
+            <p>不支持主动申请</p>
+            <p>保持良好的还款记录即有机会获得取现额度</p>
+        </div>
+    </div>
+#end
+
+
+
+
+<!-- #parse("../pages/common/_nav.vm") -->
+<script type="text/javascript">
+	var BASEDATA = {
+		title:'$!title',
+        accountStatus:'$!accountStatus',
+        applyStatus:'$!applyStatus',
+        totalQuota:'$!totalQuota',
+        availableQuota:'$!availableQuota',
+        cancelReason:'$!cancelReason'
+    };
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/info/apply.js"></script>
+#end
+
+#end

@@ -1,0 +1,31 @@
+{
+    "loanMarketItemList":[
+        {
+            "logo":"http://img4.imgtn.bdimg.com/it/u=1958637512,3195561216&fm=200&gp=0.jpg",
+            "title":"仅凭身份证就可以申请",
+            "usableAmount":"10-20万",
+            "initApplies":3299,
+            "loanBrand":"叮咚钱包",
+            "url":"",
+            "sort":"hot"
+        },
+        {
+            "logo":"http://img5.imgtn.bdimg.com/it/u=3798456596,727849975&fm=200&gp=0.jpg",
+            "title":"分钟申请，最高20万循环额度",
+            "usableAmount":"5000-10万",
+            "initApplies":32564,
+            "loanBrand":"宜人贷",
+            "url":"",
+            "sort":"topspeed"
+        },
+        {
+            "logo":"http://img5.imgtn.bdimg.com/it/u=3798456596,727849975&fm=200&gp=0.jpg",
+            "title":"分钟申请，最高20万循环额度",
+            "usableAmount":"5000-10万",
+            "initApplies":32564,
+            "loanBrand":"宜人贷",
+            "url":"",
+            "sort":"hot"
+        }
+    ]
+}

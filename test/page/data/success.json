@@ -1,0 +1,42 @@
+{
+	"code":0,
+	"status":200,
+	"msg":"成功",
+    "data":{
+		"riskStatus":5,
+		"bgisAuditResult":"success",
+		"operateResult":"error",
+		"yqyChannel":true,
+		"manualWithdrawal":true,
+		"passBgisValid":true,
+		"planRecordedDate":"2017年10月19日",
+		"realPrincipal":1999.90,
+		"loanPrincipal":20000,
+		"autoRepay":true,
+		"bankNo":6678,
+		"unFreezeDate":"2017年10月19日",
+		"creditCardOverdueAccount":0,
+		"creditCardOverdueNinetyAccount":0,
+		"loanOverdueAccount":0,
+		"loanOverdueNinetyAccount":0,
+		"creditCardOverdueAmount":0,
+		"loanOverdueAmount":0
+	},
+	"result": {
+		"processCode":10002,
+		"content": "错误提示信息",
+		"status": 301,
+		"msg":"运营商暂不可用，请10分钟后重试",
+		"key":"13012341234",
+		"mobileName":"中国移动",
+		"riskStatus":6,
+		"thirdurl":"/page/pages/cash/fund-result?status=3a",
+		"bgisAuditResult":"paramError",
+		"operateResult":true,
+		"switch":"1"
+	},
+	"checkResult":{
+		"chooseImage":true
+	},
+	"url":"/test/page/data/test.pdf"
+}

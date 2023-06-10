@@ -1,0 +1,68 @@
+#set($title = "芝麻信用授权")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/accredit.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="main">
+	<form action="" class="sesame-form" method="post">
+		<div class="form-panel">
+			<div class="panel-line js-form-group">
+				<label class="control-label" for="">姓名</label>
+	            <div class="form-content">
+	                <input type="text" name="realName" readonly placeholder="请输入您的姓名" value="$!realName">
+	            </div>
+	            <div class="error-message js-error-message">
+	                <span class="js-error-message-text"></span>
+	            </div>
+			</div>
+			<div class="panel-line js-form-group">
+				<label class="control-label" for="">身份证号</label>
+	            <div class="form-content">
+	                <input type="text" name="idcardNo" readonly placeholder="请输入身份证号" value="$!idcardNo">
+	            </div>
+	            <div class="error-message js-error-message">
+	                <span class="js-error-message-text"></span>
+	            </div>
+			</div>
+		</div>
+		<div class="form-link">
+			<span>以上用于确认您的身份信息
+		</div>
+		<div class="btn-wrap3">
+			<button type="submit" class="btn-submit js-submit-button">确认授权</button>
+		</div>
+		<!-- <div class="sesame-flow-box">
+			<div class="sesame-flow-line"></div>
+			<ul class="sesame-flow">
+				<li>
+					<span class="icon"></span>
+		            <span class="title">确认授权</span>
+				</li>
+				<li>
+					<span class="icon"></span>
+		            <span class="title">同意协议</span>
+				</li>
+				<li>
+					<span class="icon"></span>
+		            <span class="title">短信验证</span>
+				</li>
+			</ul>
+		</div> -->
+	</form>
+	 ## <div id="layout_footer"></div>
+	<!-- <div class="operator-bottom">
+		<p>提示：认证芝麻信用有助于提高您的申请审核速度</p>
+	</div> -->
+</div>
+
+
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/credit/sesame.js"></script>
+
+#end
+#end

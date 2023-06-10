@@ -1,0 +1,45 @@
+#set($title = "小贷鱼")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/register.scss">
+#end
+
+#block('body')
+<div class="logo">
+    <img src="/static/images/logo2.png" alt="">
+</div>
+<div class="panel" id="layout">
+    <form class="register-form" action="">
+        <section class="input-container">
+            <div class="input-wrap">
+                <input type="tel" id="mobile" name="mobile" class="phone" placeholder="输入手机号码" maxlength="11"/>
+            </div>
+        </section>
+        <!-- <section class="input-container" id="picCodeBox" style="display:none;">
+            <div class="input-wrap">
+                <input type="text" placeholder="输入图形验证码" name="picRandom" id="picRandom">
+            </div>
+            <div class="separetor2"></div>
+            <img src="/verify/verifyCode" id="img-code" class="img-code">
+        </section> -->
+        <section class="input-container code-flex">
+            <div class="input-wrap">
+                <input type="text" placeholder="输入短信验证码" name="smsCode" maxlength="6">
+            </div>
+            <a href="javascript:;" class="send-btn js-captcha" data-phone-target="#mobile" data-picCode-target="#picRandom" data-text="获取验证码" data-type="10">发送验证码</a>
+        </section>
+        <section class="submit-container">
+            <a href="javascript:;" class="btn-submit js-submit-button">
+                <img src="/static/images/register-btn.png" alt="">
+            </a>
+        </section>
+    </form>
+</div>
+
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/user/register.js"></script>
+#end
+
+#end

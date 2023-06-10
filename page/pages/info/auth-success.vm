@@ -1,0 +1,15 @@
+<!-- 修改成功 -->
+<div class="dialog-layout js-success-block" style="display:none;">
+
+    <div class="img-content">
+        <img class="image icon-success" src="/static/images/img-success.png">
+        <img class="image icon-fail" style="display:none;" src="/static/images/icon-audit-error.png">
+        <img class="image icon-cancel" style="display:none;" src="/static/images/icon-audit-cancel.png">
+    </div>
+    <div class="text-content">
+        <p class="big-txt-tips js-big-tips"></p>
+        <p class="small-txt-tips js-small-tips"></p>
+        <button type="button" class="btn js-confirm-btn">确定</button>
+    </div>
+
+</div>

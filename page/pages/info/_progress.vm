@@ -1,0 +1,13 @@
+## 导航条
+<div class="progress">
+    <div class="image-box">
+        <img src="/static/images/icon-progress-1.png" />
+        <img src="/static/images/icon-progress-2.png" style="display:none;"  />
+        <img src="/static/images/icon-progress-3.png" style="display:none;" />
+    </div>
+    <div class="text-box">
+        <span class="active">个人信息</span>
+        <span class="second">工作信息</span>
+        <span class="last">信用认证</span>
+    </div>
+</div>

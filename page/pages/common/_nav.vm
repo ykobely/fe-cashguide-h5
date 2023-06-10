@@ -1,0 +1,20 @@
+<ul class="ui-nav js-ui-nav">
+    <li class="">
+        <a href="/apply/pinMoney" target="_blank">
+        	<i class="icon icon-money"></i>
+            <span class="title">小贷鱼</span>
+        </a>
+    </li>
+	<li class="second">
+		<a href="/payment/contractList" target="_blank">
+			<i class="icon icon-contract"></i>
+			<span class="title">合同</span>
+		</a>
+	</li>
+	<li>
+		<a href="/user/myInfo" target="_blank">
+			<i class="icon icon-user"></i>
+			<span class="title">我的</span>
+		</a>
+	</li>
+</ul>

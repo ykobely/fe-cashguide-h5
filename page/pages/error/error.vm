@@ -1,0 +1,51 @@
+#set($title = "系统提示")
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/error.scss">
+#end
+
+#block('body')
+#parse("../pages/common/_header.vm")
+<div class="main">
+	<div class="result-box">
+        <div class="result-img">
+			<img class="error" src="/static/images/icon-system-error.png" alt="">
+		</div>
+		<p class="resultTitle text-box">系统异常</p>
+		<p class="returnMsg text-box">$!message</p>
+	</div>
+	<div class="btn-wrap">
+		<a class="btn js-btn" href="javascript:;">返回上一页</a>
+	</div>
+</div>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script>
+	var BASEDATA = {
+		title:'$!title',
+		code:'$!code'
+	};
+	$(function(){
+
+		$(document).on('click', '.js-btn', function() {
+
+		    if (window.backUrl) {
+		        location.href = window.backUrl;
+
+		    } else {
+				if(window.history.length > 1){
+					history.back();
+				}else{
+					// 无上一页
+
+				}
+
+		    }
+		    return false;
+		});
+	})
+</script>
+<script src="/static/scripts/pages/common/common.js"></script>
+#end
+#end

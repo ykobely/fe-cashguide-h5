@@ -1,0 +1,39 @@
+#set( $title = '完善信息' )
+
+#extends("../../layouts/main.vm")
+
+#block('head_meta')
+<link rel="stylesheet" type="text/css" href="/static/styles/pages/audit.scss">
+#end
+
+#block('body')
+<div class="panel">
+    <div class="audit-box">
+        <div class="box-body">
+            <div class="icon authorized js-status-icon"></div>
+            <div class="status-wrap">
+                <h1 class="">完善信息</h1>
+                <p class="money">申请金额：$!{authorizedInfo.loanPrincipal}元</p>
+                <p class="des">为了您的资金安全，您的此次借款需要在2小时内进行授权/开通资金存管账户，请按照提示进行操作</p>
+            </div>
+            <div class="btn-wrap">
+                <a href="$!{authorizedInfo.thirdUrl}" class="btn">立即前往</a>
+                <a href="javascript:;" class="btn-cancel js-cancel-btn">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var BASEDATA = {
+        title:'$!title'
+    };
+    var volecityData = {
+        cashLoanCapitalResultId:'$!{authorizedInfo.cashLoanCapitalResultId}'
+    };
+</script>
+<script src="/static/scripts/libs/jquery-2.1.4.min.js"></script>
+<script src="/static/scripts/pages/cash/authorized.js"></script>
+#end
+#end
